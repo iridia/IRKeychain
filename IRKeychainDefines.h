@@ -18,6 +18,9 @@
 #define __IRKeychain__
 
 
+
+
+
 typedef enum {
 	
 	IRKeychainItemKindAny,
@@ -28,6 +31,9 @@ typedef enum {
 	IRKeychainItemKindIdentity		//	kSecClassIdentity
 
 } IRKeychainItemKind;
+
+
+
 
 
 typedef enum {
@@ -151,6 +157,41 @@ static inline NSString* irNSStringFromOSStatus(OSStatus status) {
 	}
 
 }
+
+
+
+
+
+static inline Class IRKeychainItemClassFromKind (IRKeychainItemKind kind) {
+
+//	This surely is not optimal
+
+	switch (kind) {
+	
+		case IRKeychainItemKindInternetPassword:
+			return NSClassFromString(@"IRKeychainInternetPasswordItem");
+			
+		case IRKeychainItemKindCertificate:
+			return NSClassFromString(@"IRKeychainCertificateItem");
+			
+		case IRKeychainItemKindKey:
+			return NSClassFromString(@"IRKeychainKeyItem");
+		
+		case IRKeychainItemKindIdentity:
+			return NSClassFromString(@"IRKeychainIdentityItem");
+		
+		case IRKeychainItemKindAny:
+		case IRKeychainItemKindPassword:
+		default:
+			return NSClassFromString(@"IRKeychainPasswordItem");
+	
+	}
+
+}
+
+
+
+
 
 #endif
 
