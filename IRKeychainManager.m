@@ -55,12 +55,8 @@
 		[results addObjectsFromArray:query(IRKeychainItemKindIdentity)];
 		
 		return results;
-		
+	
 	}
-	
-	NSLog(@"\n\n");
-	
-	NSLog(@"Querying items of kind %@ matching predicate %@ in access group %@", NSStringFromIRKeychainItemKind(kind), predicateOrNil, accessGroupOrNil);
 	
 	NSMutableDictionary *queryDictionary = [NSMutableDictionary dictionaryWithObjectsAndKeys:
 
@@ -79,77 +75,21 @@
 	[queryDictionary setObject:[predicateOrNil objectForKey:aKey] forKey:aKey];
 	
 	
-//	The identifier is an umbrella term for different keys, for different keychain item classes.		
+//	The identifier is an umbrella term for different keys, for different keychain item classes.
 //	FIXME: Add identifier support for other kinds of items
 	
 
 	OSStatus keychainServicesResults = errSecSuccess;
 	keychainServicesResults = SecItemCopyMatching((CFDictionaryRef)queryDictionary, (CFTypeRef *)&resultsDictionary);
 	
-	NSLog(@"queryDictionary %@, resultsDictionary %@", queryDictionary, resultsDictionary);
+	if (keychainServicesResults != errSecSuccess) {
 	
-	switch (keychainServicesResults) {
-	
-		case errSecSuccess:
-			
-			NSLog(@"Item found.  Now, items are %@", resultsDictionary);
-			break;
-		
-		
-	//	Other cases fall through and return an empty array.
-		
-		case errSecUnimplemented:
-			
-			NSLog(@"Error: Unimplemented.");
-			return [NSArray array];
-			
-		case errSecParam:
-			
-			NSLog(@"Error: Keychain query parameters invalid.");
-			return [NSArray array];
-
-		case errSecAllocate:
-			
-			NSLog(@"Error: Can’t allocate memory.");
-			return [NSArray array];
-			
-		case errSecNotAvailable:
-			
-			NSLog(@"Error: No keychain available.");
-			return [NSArray array];
-			
-		case errSecDuplicateItem:
-			
-			NSLog(@"Error: duplicate item exists.");
-			return [NSArray array];
-
-		case errSecItemNotFound:
-			
-			NSLog(@"Error: Item not found");
-			return [NSArray array];
-			
-		case errSecInteractionNotAllowed:
-			
-			NSLog(@"Error: User interaction is not allowed.");
-			return [NSArray array];
-			
-		case errSecDecode:
-			
-			NSLog(@"Error: Unable to decode the provided data.");
-			return [NSArray array];
-			
-		case errSecAuthFailed:
-			
-			NSLog(@"Error: The user name or passphrase you entered is not correct.");
-			return [NSArray array];
-		
-	//	Fallthrough
-		default:
-			
-			return [NSArray array];
-			break;			
+		NSLog(@"Error: %@", irNSStringFromOSStatus(keychainServicesResults));
+		return [NSArray array];
 	
 	}
+	
+	NSLog(@"\n\n queryDictionary %@, resultsDictionary %@", queryDictionary, resultsDictionary);
 	
 	return [NSArray array];	
 	

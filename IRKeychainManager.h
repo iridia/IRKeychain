@@ -15,7 +15,8 @@
 
 - (NSArray *) keychainItemsOfKind:(IRKeychainItemKind)kind matchingPredicate:(NSDictionary *)predicateOrNil inAccessGroup:(NSString *)accessGroupOrNil;
 
-//	Wrapper to the Security framework in Core Foundation.  Returns an array of keychain items that matches the identifier in the default order returned by CF.
+//	Returns an array of items matching a certain predicate that is the same thing you can pass to SecItemCopyMatching().  Item order not guaranteed.
+
 
 //	- (NSArray *) passwordsMatchingLabel:predicate:inAccessGroup:
 //	- (NSArray *) internetPasswordsMatchingServer:account:predicate:inAccessGroup:
