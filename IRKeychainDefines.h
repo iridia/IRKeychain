@@ -51,6 +51,62 @@ typedef enum {
 
 
 
+typedef enum {
+    
+    IRKeychainAuthenticationTypeNTLM,
+    IRKeychainAuthenticationTypeMSN,
+    IRKeychainAuthenticationTypeDPA,
+    IRKeychainAuthenticationTypeRPA,
+    IRKeychainAuthenticationTypeHTTPBasic,
+    IRKeychainAuthenticationTypeHTTPDigest,
+    IRKeychainAuthenticationTypeHTMLForm,
+    IRKeychainAuthenticationTypeDefault,
+    	
+} IRKeychainAuthenticationType;
+
+
+
+
+
+typedef enum {
+
+	IRKeychainProtocolFTP,
+	IRKeychainProtocolFTPAccount,
+	IRKeychainProtocolHTTP,
+	IRKeychainProtocolIRC,
+	IRKeychainProtocolNNTP,
+	IRKeychainProtocolPOP3,
+	IRKeychainProtocolSMTP,
+	IRKeychainProtocolSOCKS,
+	IRKeychainProtocolIMAP,
+	IRKeychainProtocolLDAP,
+	IRKeychainProtocolAppleTalk,
+	IRKeychainProtocolAFP,
+	IRKeychainProtocolTelnet,
+	IRKeychainProtocolSSH,
+	IRKeychainProtocolFTPS,
+	IRKeychainProtocolHTTPS,
+	IRKeychainProtocolHTTPProxy,
+	IRKeychainProtocolHTTPSProxy,
+	IRKeychainProtocolFTPProxy,
+	IRKeychainProtocolSMB,
+	IRKeychainProtocolRTSP,
+	IRKeychainProtocolRTSPProxy,
+	IRKeychainProtocolDAAP,
+	IRKeychainProtocolEPPC,
+	IRKeychainProtocolIPP,
+	IRKeychainProtocolNNTPS,
+	IRKeychainProtocolLDAPS,
+	IRKeychainProtocolTelnetS,
+	IRKeychainProtocolIMAPS,
+	IRKeychainProtocolIRCS,
+	IRKeychainProtocolPOP3S
+
+} IRKeychainProtocol;
+
+
+
+
 static inline NSString* NSStringFromIRKeychainItemKind (IRKeychainItemKind kind) {
 
 	switch (kind) {
@@ -185,6 +241,153 @@ static inline Class IRKeychainItemClassFromKind (IRKeychainItemKind kind) {
 		default:
 			return NSClassFromString(@"IRKeychainPasswordItem");
 	
+	}
+
+}
+
+
+
+
+
+static inline CFTypeRef SecAuthenticationTypeFromIRKeychainAuthenticationType(IRKeychainAuthenticationType type) {
+
+	switch (type) {
+			
+		case IRKeychainAuthenticationTypeNTLM:
+			return kSecAttrAuthenticationTypeNTLM;
+
+		case IRKeychainAuthenticationTypeMSN:
+			return kSecAttrAuthenticationTypeMSN;
+
+		case IRKeychainAuthenticationTypeDPA:
+			return kSecAttrAuthenticationTypeDPA;
+
+		case IRKeychainAuthenticationTypeRPA:
+			return kSecAttrAuthenticationTypeRPA;
+
+		case IRKeychainAuthenticationTypeHTTPBasic:
+			return kSecAttrAuthenticationTypeHTTPBasic;
+
+		case IRKeychainAuthenticationTypeHTTPDigest:
+			return kSecAttrAuthenticationTypeHTTPDigest;
+
+		case IRKeychainAuthenticationTypeHTMLForm:
+			return kSecAttrAuthenticationTypeHTMLForm;
+
+		case IRKeychainAuthenticationTypeDefault:
+			return kSecAttrAuthenticationTypeDefault;
+
+		default:
+			assert(NO);
+			
+	}	
+	
+}
+
+
+
+
+
+static inline CFTypeRef SecProtocolFromIRKeychainProtocol(IRKeychainProtocol protocol) {
+
+	switch (protocol) {
+
+		case IRKeychainProtocolFTP:
+			return kSecAttrProtocolFTP;
+
+		case IRKeychainProtocolFTPAccount:
+			return kSecAttrProtocolFTPAccount;
+
+		case IRKeychainProtocolHTTP:
+			return kSecAttrProtocolHTTP;
+
+		case IRKeychainProtocolIRC:
+			return kSecAttrProtocolIRC;
+
+		case IRKeychainProtocolNNTP:
+			return kSecAttrProtocolNNTP;
+
+		case IRKeychainProtocolPOP3:
+			return kSecAttrProtocolPOP3;
+
+		case IRKeychainProtocolSMTP:
+			return kSecAttrProtocolSMTP;
+
+		case IRKeychainProtocolSOCKS:
+			return kSecAttrProtocolSOCKS;
+
+		case IRKeychainProtocolIMAP:
+			return kSecAttrProtocolIMAP;
+
+		case IRKeychainProtocolLDAP:
+			return kSecAttrProtocolLDAP;
+
+		case IRKeychainProtocolAppleTalk:
+			return kSecAttrProtocolAppleTalk;
+
+		case IRKeychainProtocolAFP:
+			return kSecAttrProtocolAFP;
+
+		case IRKeychainProtocolTelnet:
+			return kSecAttrProtocolTelnet;
+
+		case IRKeychainProtocolSSH:
+			return kSecAttrProtocolSSH;
+
+		case IRKeychainProtocolFTPS:
+			return kSecAttrProtocolFTPS;
+
+		case IRKeychainProtocolHTTPS:
+			return kSecAttrProtocolHTTPS;
+
+		case IRKeychainProtocolHTTPProxy:
+			return kSecAttrProtocolHTTPProxy;
+
+		case IRKeychainProtocolHTTPSProxy:
+			return kSecAttrProtocolHTTPSProxy;
+
+		case IRKeychainProtocolFTPProxy:
+			return kSecAttrProtocolFTPProxy;
+
+		case IRKeychainProtocolSMB:
+			return kSecAttrProtocolSMB;
+
+		case IRKeychainProtocolRTSP:
+			return kSecAttrProtocolRTSP;
+
+		case IRKeychainProtocolRTSPProxy:
+			return kSecAttrProtocolRTSPProxy;
+
+		case IRKeychainProtocolDAAP:
+			return kSecAttrProtocolDAAP;
+
+		case IRKeychainProtocolEPPC:
+			return kSecAttrProtocolEPPC;
+
+		case IRKeychainProtocolIPP:
+			return kSecAttrProtocolIPP;
+
+		case IRKeychainProtocolNNTPS:
+			return kSecAttrProtocolNNTPS;
+
+		case IRKeychainProtocolLDAPS:
+			return kSecAttrProtocolLDAPS;
+
+		case IRKeychainProtocolTelnetS:
+			return kSecAttrProtocolTelnetS;
+
+		case IRKeychainProtocolIMAPS:
+			return kSecAttrProtocolIMAPS;
+
+		case IRKeychainProtocolIRCS:
+			return kSecAttrProtocolIRCS;
+
+		case IRKeychainProtocolPOP3S:
+			return kSecAttrProtocolPOP3S;
+
+		default:
+			assert(NO);
+
 	}
 
 }
