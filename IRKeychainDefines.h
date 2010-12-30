@@ -41,12 +41,82 @@ typedef enum {
 	
 } IRKeychainItemAccessCondition;
 
-//	Conveniences for debugging, internal use, etc.
 
-extern NSString* NSStringFromIRKeychainItemKind (IRKeychainItemKind kind);
-extern CFTypeRef SecClassFromIRKeychainItemKind(IRKeychainItemKind kind);
 
-extern NSString* irNSStringFromOSStatus(OSStatus status);
+
+
+static inline NSString* NSStringFromIRKeychainItemKind (IRKeychainItemKind kind) {
+
+    switch (kind) {
+
+        case IRKeychainItemKindAny:
+            return @"IRKeychainItemKindAny";
+
+        case IRKeychainItemKindPassword:
+            return @"IRKeychainItemKindPassword";
+
+        case IRKeychainItemKindInternetPassword: 
+            return @"IRKeychainItemKindInternetPassword";
+
+        case IRKeychainItemKindCertificate: 
+            return @"IRKeychainItemKindCertificate";
+
+        case IRKeychainItemKindKey: 
+            return @"IRKeychainItemKindKey";
+
+        case IRKeychainItemKindIdentity: 
+            return @"IRKeychainItemKindIdentity";
+
+        default:
+            assert(NO);
+            
+    }
+    
+}
+
+
+
+
+
+static inline CFTypeRef SecClassFromIRKeychainItemKind(IRKeychainItemKind kind) {
+
+    switch (kind) {
+            
+        case IRKeychainItemKindAny:
+            return NULL;
+            
+        case IRKeychainItemKindPassword:
+            return kSecClassGenericPassword;
+            
+        case IRKeychainItemKindInternetPassword: 
+            return kSecClassInternetPassword;
+            
+        case IRKeychainItemKindCertificate: 
+            return kSecClassCertificate;
+            
+        case IRKeychainItemKindKey: 
+            return kSecClassKey;
+            
+        case IRKeychainItemKindIdentity: 
+            return kSecClassIdentity;
+            
+        default:
+            assert(NO);
+            
+    }    
+    
+}
+
+
+
+
+
+static inline NSString* irNSStringFromOSStatus(OSStatus status) {
+
+//	FIXME: Implement
+	return nil;
+
+}
 
 #endif
 
