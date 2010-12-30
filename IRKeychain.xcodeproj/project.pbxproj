@@ -78,21 +78,11 @@
 		0867D691FE84028FC02AAC07 /* IRKeychain */ = {
 			isa = PBXGroup;
 			children = (
+				FFBC91AA12CCB9AF00E1B723 /* IRKeychain.h */,
+				FFBC922712CCBA2700E1B723 /* IRKeychain_Prefix.pch */,
+				FFBC92AE12CCBD1B00E1B723 /* IRKeychainDefines.h */,
 				FFBC931C12CCBE8900E1B723 /* IRKeychainManager.h */,
 				FFBC931D12CCBE8900E1B723 /* IRKeychainManager.m */,
-				FFBC92AE12CCBD1B00E1B723 /* IRKeychainDefines.h */,
-				FFBC92A012CCBCB800E1B723 /* IRKeychainIdentityItem.h */,
-				FFBC92A112CCBCB800E1B723 /* IRKeychainIdentityItem.m */,
-				FFBC929A12CCBCA900E1B723 /* IRKeychainKeyItem.h */,
-				FFBC929B12CCBCA900E1B723 /* IRKeychainKeyItem.m */,
-				FFBC929612CCBC9C00E1B723 /* IRKeychainCertificateItem.h */,
-				FFBC929712CCBC9C00E1B723 /* IRKeychainCertificateItem.m */,
-				FFBC929212CCBC8C00E1B723 /* IRKeychainInternetPasswordItem.h */,
-				FFBC929312CCBC8C00E1B723 /* IRKeychainInternetPasswordItem.m */,
-				FFBC928E12CCBC7000E1B723 /* IRKeychainPasswordItem.h */,
-				FFBC928F12CCBC7000E1B723 /* IRKeychainPasswordItem.m */,
-				FFBC922712CCBA2700E1B723 /* IRKeychain_Prefix.pch */,
-				FFBC91AA12CCB9AF00E1B723 /* IRKeychain.h */,
 				FFBC928D12CCBC5600E1B723 /* Keychain Items */,
 				FFBC91B312CCB9D100E1B723 /* IRWebAPIKit Integration */,
 				0867D69AFE84028FC02AAC07 /* Frameworks */,
@@ -123,6 +113,16 @@
 			children = (
 				FFBC928812CCBC3F00E1B723 /* IRKeychainAbstractItem.h */,
 				FFBC928912CCBC3F00E1B723 /* IRKeychainAbstractItem.m */,
+				FFBC928E12CCBC7000E1B723 /* IRKeychainPasswordItem.h */,
+				FFBC928F12CCBC7000E1B723 /* IRKeychainPasswordItem.m */,
+				FFBC929212CCBC8C00E1B723 /* IRKeychainInternetPasswordItem.h */,
+				FFBC929312CCBC8C00E1B723 /* IRKeychainInternetPasswordItem.m */,
+				FFBC929612CCBC9C00E1B723 /* IRKeychainCertificateItem.h */,
+				FFBC929712CCBC9C00E1B723 /* IRKeychainCertificateItem.m */,
+				FFBC929B12CCBCA900E1B723 /* IRKeychainKeyItem.m */,
+				FFBC929A12CCBCA900E1B723 /* IRKeychainKeyItem.h */,
+				FFBC92A012CCBCB800E1B723 /* IRKeychainIdentityItem.h */,
+				FFBC92A112CCBCB800E1B723 /* IRKeychainIdentityItem.m */,
 			);
 			name = "Keychain Items";
 			sourceTree = "<group>";
