@@ -96,14 +96,14 @@
 }
 
 - (id) itemOfKind:(IRKeychainItemKind)kind withIdentifier:(NSString *)identifier {
-	
-	return nil;
+
+	return [[self keychainItemsOfKind:kind matchingPredicate:nil inAccessGroup:nil] objectAtIndex:0];
 	
 }
 
-- (id) newItemOfKind:(IRKeychainItemKind)kind withIdentifier:(NSString *)identifier {
+- (id) createdItemOfKind:(IRKeychainItemKind)kind withIdentifier:(NSString *)identifier {
 	
-	return nil;
+	return [[[IRKeychainItemClassFromKind(kind) alloc] initWithIdentifier:identifier] autorelease];
 	
 }
 

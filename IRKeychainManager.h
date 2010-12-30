@@ -18,9 +18,9 @@
 //	Returns an array of items matching a certain predicate that is the same thing you can pass to SecItemCopyMatching().  Item order not guaranteed.
 
 
-//	- (NSArray *) passwordsMatchingLabel:predicate:inAccessGroup:
-//	- (NSArray *) internetPasswordsMatchingServer:account:predicate:inAccessGroup:
-
 @property (nonatomic, readwrite, retain) NSString *defaultAccessGroupName;
+
+- (id) itemOfKind:(IRKeychainItemKind)kind withIdentifier:(NSString *)identifier;
+- (id) createdItemOfKind:(IRKeychainItemKind)kind withIdentifier:(NSString *)identifier;
 
 @end
