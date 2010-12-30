@@ -27,12 +27,12 @@
 @property (nonatomic, readwrite, retain) NSString *userLabel;
 @property (nonatomic, readwrite, retain) NSData *userGenericData;
 
-@property (nonatomic, readwrite, retain) NSString *internetSecurityDomain;
+@property (nonatomic, readwrite, retain) NSString *serverSecurityDomain;
 @property (nonatomic, readwrite, retain) NSString *serverAddress;
-//	@property (nonatomic, readwrite, assign) SecProtocolType protocol;
-@property (nonatomic, readwrite, assign) IRKeychainAuthenticationType authenticationType;	//kSecAttrAuthenticationType
-@property (nonatomic, readwrite, retain) NSNumber *port;	//kSecAttrAuthenticationType
-@property (nonatomic, readwrite, retain) NSString *path;	//kSecAttrAuthenticationType
+@property (nonatomic, readwrite, assign) NSUInteger serverPort;
+@property (nonatomic, readwrite, assign) IRKeychainProtocol serverProtocol;
+@property (nonatomic, readwrite, assign) IRKeychainAuthenticationType serverAuthenticationType;
+@property (nonatomic, readwrite, retain) NSString *serverPath;
 
 @property (nonatomic, readonly, copy) NSURL *representedURL;	// = serverAddress + port + path
 
