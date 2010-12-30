@@ -31,12 +31,17 @@
 	
 	self = [super init]; if (!self) return nil;
 	
+	self.errorDomain = IRIDIA_KEYCHAIN_DEFAULT_NSERROR_DOMAIN;
+	
 	return self;
 	
 }
 
 
 - (NSArray *) keychainItemsOfKind:(IRKeychainItemKind)kind matchingPredicate:(NSDictionary *)predicateOrNil inAccessGroup:(NSString *)accessGroupOrNil {
+
+	NSLog(@"keychainItemsOfKind:%@ matchingPredicate:%@ inAccessGroup:%@", NSStringFromIRKeychainItemKind(kind), predicateOrNil, accessGroupOrNil);
+	
 	
 	if (kind == IRKeychainItemKindAny) {
 	
@@ -61,13 +66,14 @@
 	NSMutableDictionary *queryDictionary = [NSMutableDictionary dictionaryWithObjectsAndKeys:
 
 		(id)SecClassFromIRKeychainItemKind(kind), (id)kSecClass,
+		(id)kCFBooleanTrue, (id)kSecReturnData,
 		(id)kCFBooleanTrue, (id)kSecReturnAttributes,
 		(id)kCFBooleanTrue, (id)kSecReturnRef,
 		(id)kSecMatchLimitAll, (id)kSecMatchLimit,
 	
 	nil];
 	
-	NSMutableDictionary *resultsDictionary = [NSMutableDictionary dictionary];	
+	NSMutableArray *resultsArray = [NSMutableArray array];	
 	
 	
 	if (predicateOrNil)
@@ -75,12 +81,10 @@
 	[queryDictionary setObject:[predicateOrNil objectForKey:aKey] forKey:aKey];
 	
 	
-//	The identifier is an umbrella term for different keys, for different keychain item classes.
-//	FIXME: Add identifier support for other kinds of items
-	
-
 	OSStatus keychainServicesResults = errSecSuccess;
-	keychainServicesResults = SecItemCopyMatching((CFDictionaryRef)queryDictionary, (CFTypeRef *)&resultsDictionary);
+	keychainServicesResults = SecItemCopyMatching((CFDictionaryRef)queryDictionary, (CFTypeRef *)&resultsArray);
+	
+	NSLog(@"Result is %@", irNSStringFromOSStatus(keychainServicesResults));
 	
 	if (keychainServicesResults != errSecSuccess) {
 	
@@ -91,24 +95,11 @@
 	
 	}
 	
-	NSLog(@"\n\n queryDictionary %@, resultsDictionary %@", queryDictionary, resultsDictionary);
+	NSLog(@"Results %@", resultsArray);
 	
-	return [NSArray array];	
-	
-}
-
-- (id) itemOfKind:(IRKeychainItemKind)kind withIdentifier:(NSString *)identifier {
-
-	return [[self keychainItemsOfKind:kind matchingPredicate:nil inAccessGroup:nil] objectAtIndex:0];
+	return [resultsArray copy];
 	
 }
-
-- (id) createdItemOfKind:(IRKeychainItemKind)kind withIdentifier:(NSString *)identifier {
-	
-	return [[[IRKeychainItemClassFromKind(kind) alloc] initWithIdentifier:identifier] autorelease];
-	
-}
-
 
 @end
 

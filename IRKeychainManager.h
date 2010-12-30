@@ -20,7 +20,14 @@
 
 @property (nonatomic, readwrite, retain) NSString *defaultAccessGroupName;
 
-- (id) itemOfKind:(IRKeychainItemKind)kind withIdentifier:(NSString *)identifier;
-- (id) createdItemOfKind:(IRKeychainItemKind)kind withIdentifier:(NSString *)identifier;
+//	This access group name matches the name you specify in your app entitlements, to share keychain items across a suite of apps.
+
+
+@property (nonatomic, readwrite, retain) NSString *errorDomain;
+
+//	Default is IRIDIA_KEYCHAIN_DEFAULT_NSERROR_DOMAIN
+
+
+//	FIXME: add more defaults, over configuration
 
 @end
