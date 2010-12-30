@@ -11,4 +11,26 @@
 
 @implementation IRKeychainInternetPasswordItem
 
+- (NSDictionary *) securityItemQueryDictionary {
+
+	NSMutableDictionary *returnedDictionary = [[super securityItemQueryDictionary] mutableCopy];
+	
+	if (self.associatedAccountName)
+	[returnedDictionary setObject:self.associatedAccountName forKey:(id)kSecAttrAccount];
+	
+	return returnedDictionary;
+
+}
+
+- (NSDictionary *) securityItemAttributesDictionary {
+
+	NSMutableDictionary *returnedDictionary = [[super securityItemAttributesDictionary] mutableCopy];
+	
+	if (self.associatedAccountName)
+	[returnedDictionary setObject:self.associatedAccountName forKey:(id)kSecAttrAccount];
+	
+	return returnedDictionary;
+
+}
+
 @end
