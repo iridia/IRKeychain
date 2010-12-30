@@ -84,7 +84,9 @@
 	
 	if (keychainServicesResults != errSecSuccess) {
 	
+		if (keychainServicesResults != errSecItemNotFound)
 		NSLog(@"Error: %@", irNSStringFromOSStatus(keychainServicesResults));
+		
 		return [NSArray array];
 	
 	}
