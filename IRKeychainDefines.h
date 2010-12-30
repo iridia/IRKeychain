@@ -21,6 +21,12 @@
 
 
 
+#define IRIDIA_KEYCHAIN_DEFAULT_NSERROR_DOMAIN @"com.iridia.keychain"
+
+
+
+
+
 typedef enum {
 	
 	IRKeychainItemKindAny,
@@ -243,6 +249,31 @@ static inline Class IRKeychainItemClassFromKind (IRKeychainItemKind kind) {
 	
 	}
 
+}
+
+
+
+
+
+static inline IRKeychainItemKind IRKeychainItemKindFromClass (Class class) {
+
+	if (class == NSClassFromString(@"IRKeychainPasswordItem"))
+		return IRKeychainItemKindPassword;
+		
+	if (class == NSClassFromString(@"IRKeychainInternetPasswordItem"))
+		return IRKeychainItemKindInternetPassword;
+		
+	if (class == NSClassFromString(@"IRKeychainCertificateItem"))
+		return IRKeychainItemKindCertificate;
+		
+	if (class == NSClassFromString(@"IRKeychainKeyItem"))
+		return IRKeychainItemKindKey;
+	
+	if (class == NSClassFromString(@"IRKeychainIdentityItem"))
+		return IRKeychainItemKindIdentity;
+	
+	assert(NO);
+	
 }
 
 
