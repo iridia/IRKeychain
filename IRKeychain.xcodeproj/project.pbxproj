@@ -9,20 +9,48 @@
 /* Begin PBXBuildFile section */
 		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
 		FFBC91AC12CCB9AF00E1B723 /* IRKeychain.h in Headers */ = {isa = PBXBuildFile; fileRef = FFBC91AA12CCB9AF00E1B723 /* IRKeychain.h */; };
-		FFBC91AD12CCB9AF00E1B723 /* IRKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBC91AB12CCB9AF00E1B723 /* IRKeychain.m */; };
 		FFBC91B512CCB9EF00E1B723 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFBC91B412CCB9EF00E1B723 /* CoreFoundation.framework */; };
 		FFBC91B712CCB9EF00E1B723 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFBC91B612CCB9EF00E1B723 /* Security.framework */; };
 		FFBC922812CCBA2700E1B723 /* IRKeychain_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = FFBC922712CCBA2700E1B723 /* IRKeychain_Prefix.pch */; };
+		FFBC928A12CCBC3F00E1B723 /* IRKeychainAbstractItem.h in Headers */ = {isa = PBXBuildFile; fileRef = FFBC928812CCBC3F00E1B723 /* IRKeychainAbstractItem.h */; };
+		FFBC928B12CCBC3F00E1B723 /* IRKeychainAbstractItem.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBC928912CCBC3F00E1B723 /* IRKeychainAbstractItem.m */; };
+		FFBC929012CCBC7000E1B723 /* IRKeychainPasswordItem.h in Headers */ = {isa = PBXBuildFile; fileRef = FFBC928E12CCBC7000E1B723 /* IRKeychainPasswordItem.h */; };
+		FFBC929112CCBC7000E1B723 /* IRKeychainPasswordItem.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBC928F12CCBC7000E1B723 /* IRKeychainPasswordItem.m */; };
+		FFBC929412CCBC8C00E1B723 /* IRKeychainInternetPasswordItem.h in Headers */ = {isa = PBXBuildFile; fileRef = FFBC929212CCBC8C00E1B723 /* IRKeychainInternetPasswordItem.h */; };
+		FFBC929512CCBC8C00E1B723 /* IRKeychainInternetPasswordItem.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBC929312CCBC8C00E1B723 /* IRKeychainInternetPasswordItem.m */; };
+		FFBC929812CCBC9C00E1B723 /* IRKeychainCertificateItem.h in Headers */ = {isa = PBXBuildFile; fileRef = FFBC929612CCBC9C00E1B723 /* IRKeychainCertificateItem.h */; };
+		FFBC929912CCBC9C00E1B723 /* IRKeychainCertificateItem.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBC929712CCBC9C00E1B723 /* IRKeychainCertificateItem.m */; };
+		FFBC929C12CCBCA900E1B723 /* IRKeychainKeyItem.h in Headers */ = {isa = PBXBuildFile; fileRef = FFBC929A12CCBCA900E1B723 /* IRKeychainKeyItem.h */; };
+		FFBC929D12CCBCA900E1B723 /* IRKeychainKeyItem.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBC929B12CCBCA900E1B723 /* IRKeychainKeyItem.m */; };
+		FFBC92A212CCBCB800E1B723 /* IRKeychainIdentityItem.h in Headers */ = {isa = PBXBuildFile; fileRef = FFBC92A012CCBCB800E1B723 /* IRKeychainIdentityItem.h */; };
+		FFBC92A312CCBCB800E1B723 /* IRKeychainIdentityItem.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBC92A112CCBCB800E1B723 /* IRKeychainIdentityItem.m */; };
+		FFBC92AF12CCBD1B00E1B723 /* IRKeychainDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = FFBC92AE12CCBD1B00E1B723 /* IRKeychainDefines.h */; };
+		FFBC931E12CCBE8900E1B723 /* IRKeychainManager.h in Headers */ = {isa = PBXBuildFile; fileRef = FFBC931C12CCBE8900E1B723 /* IRKeychainManager.h */; };
+		FFBC931F12CCBE8900E1B723 /* IRKeychainManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBC931D12CCBE8900E1B723 /* IRKeychainManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D2AAC07E0554694100DB518D /* libIRKeychain.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIRKeychain.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFBC91AA12CCB9AF00E1B723 /* IRKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRKeychain.h; sourceTree = "<group>"; };
-		FFBC91AB12CCB9AF00E1B723 /* IRKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRKeychain.m; sourceTree = "<group>"; };
 		FFBC91B412CCB9EF00E1B723 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		FFBC91B612CCB9EF00E1B723 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		FFBC922712CCBA2700E1B723 /* IRKeychain_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRKeychain_Prefix.pch; sourceTree = "<group>"; };
+		FFBC928812CCBC3F00E1B723 /* IRKeychainAbstractItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRKeychainAbstractItem.h; sourceTree = "<group>"; };
+		FFBC928912CCBC3F00E1B723 /* IRKeychainAbstractItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRKeychainAbstractItem.m; sourceTree = "<group>"; };
+		FFBC928E12CCBC7000E1B723 /* IRKeychainPasswordItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRKeychainPasswordItem.h; sourceTree = "<group>"; };
+		FFBC928F12CCBC7000E1B723 /* IRKeychainPasswordItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRKeychainPasswordItem.m; sourceTree = "<group>"; };
+		FFBC929212CCBC8C00E1B723 /* IRKeychainInternetPasswordItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRKeychainInternetPasswordItem.h; sourceTree = "<group>"; };
+		FFBC929312CCBC8C00E1B723 /* IRKeychainInternetPasswordItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRKeychainInternetPasswordItem.m; sourceTree = "<group>"; };
+		FFBC929612CCBC9C00E1B723 /* IRKeychainCertificateItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRKeychainCertificateItem.h; sourceTree = "<group>"; };
+		FFBC929712CCBC9C00E1B723 /* IRKeychainCertificateItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRKeychainCertificateItem.m; sourceTree = "<group>"; };
+		FFBC929A12CCBCA900E1B723 /* IRKeychainKeyItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRKeychainKeyItem.h; sourceTree = "<group>"; };
+		FFBC929B12CCBCA900E1B723 /* IRKeychainKeyItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRKeychainKeyItem.m; sourceTree = "<group>"; };
+		FFBC92A012CCBCB800E1B723 /* IRKeychainIdentityItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRKeychainIdentityItem.h; sourceTree = "<group>"; };
+		FFBC92A112CCBCB800E1B723 /* IRKeychainIdentityItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRKeychainIdentityItem.m; sourceTree = "<group>"; };
+		FFBC92AE12CCBD1B00E1B723 /* IRKeychainDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRKeychainDefines.h; sourceTree = "<group>"; };
+		FFBC931C12CCBE8900E1B723 /* IRKeychainManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRKeychainManager.h; sourceTree = "<group>"; };
+		FFBC931D12CCBE8900E1B723 /* IRKeychainManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRKeychainManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,9 +78,22 @@
 		0867D691FE84028FC02AAC07 /* IRKeychain */ = {
 			isa = PBXGroup;
 			children = (
+				FFBC931C12CCBE8900E1B723 /* IRKeychainManager.h */,
+				FFBC931D12CCBE8900E1B723 /* IRKeychainManager.m */,
+				FFBC92AE12CCBD1B00E1B723 /* IRKeychainDefines.h */,
+				FFBC92A012CCBCB800E1B723 /* IRKeychainIdentityItem.h */,
+				FFBC92A112CCBCB800E1B723 /* IRKeychainIdentityItem.m */,
+				FFBC929A12CCBCA900E1B723 /* IRKeychainKeyItem.h */,
+				FFBC929B12CCBCA900E1B723 /* IRKeychainKeyItem.m */,
+				FFBC929612CCBC9C00E1B723 /* IRKeychainCertificateItem.h */,
+				FFBC929712CCBC9C00E1B723 /* IRKeychainCertificateItem.m */,
+				FFBC929212CCBC8C00E1B723 /* IRKeychainInternetPasswordItem.h */,
+				FFBC929312CCBC8C00E1B723 /* IRKeychainInternetPasswordItem.m */,
+				FFBC928E12CCBC7000E1B723 /* IRKeychainPasswordItem.h */,
+				FFBC928F12CCBC7000E1B723 /* IRKeychainPasswordItem.m */,
 				FFBC922712CCBA2700E1B723 /* IRKeychain_Prefix.pch */,
 				FFBC91AA12CCB9AF00E1B723 /* IRKeychain.h */,
-				FFBC91AB12CCB9AF00E1B723 /* IRKeychain.m */,
+				FFBC928D12CCBC5600E1B723 /* Keychain Items */,
 				FFBC91B312CCB9D100E1B723 /* IRWebAPIKit Integration */,
 				0867D69AFE84028FC02AAC07 /* Frameworks */,
 				034768DFFF38A50411DB9C8B /* Products */,
@@ -77,6 +118,15 @@
 			name = "IRWebAPIKit Integration";
 			sourceTree = "<group>";
 		};
+		FFBC928D12CCBC5600E1B723 /* Keychain Items */ = {
+			isa = PBXGroup;
+			children = (
+				FFBC928812CCBC3F00E1B723 /* IRKeychainAbstractItem.h */,
+				FFBC928912CCBC3F00E1B723 /* IRKeychainAbstractItem.m */,
+			);
+			name = "Keychain Items";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -86,6 +136,14 @@
 			files = (
 				FFBC91AC12CCB9AF00E1B723 /* IRKeychain.h in Headers */,
 				FFBC922812CCBA2700E1B723 /* IRKeychain_Prefix.pch in Headers */,
+				FFBC928A12CCBC3F00E1B723 /* IRKeychainAbstractItem.h in Headers */,
+				FFBC929012CCBC7000E1B723 /* IRKeychainPasswordItem.h in Headers */,
+				FFBC929412CCBC8C00E1B723 /* IRKeychainInternetPasswordItem.h in Headers */,
+				FFBC929812CCBC9C00E1B723 /* IRKeychainCertificateItem.h in Headers */,
+				FFBC929C12CCBCA900E1B723 /* IRKeychainKeyItem.h in Headers */,
+				FFBC92A212CCBCB800E1B723 /* IRKeychainIdentityItem.h in Headers */,
+				FFBC92AF12CCBD1B00E1B723 /* IRKeychainDefines.h in Headers */,
+				FFBC931E12CCBE8900E1B723 /* IRKeychainManager.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,7 +197,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FFBC91AD12CCB9AF00E1B723 /* IRKeychain.m in Sources */,
+				FFBC928B12CCBC3F00E1B723 /* IRKeychainAbstractItem.m in Sources */,
+				FFBC929112CCBC7000E1B723 /* IRKeychainPasswordItem.m in Sources */,
+				FFBC929512CCBC8C00E1B723 /* IRKeychainInternetPasswordItem.m in Sources */,
+				FFBC929912CCBC9C00E1B723 /* IRKeychainCertificateItem.m in Sources */,
+				FFBC929D12CCBCA900E1B723 /* IRKeychainKeyItem.m in Sources */,
+				FFBC92A312CCBCB800E1B723 /* IRKeychainIdentityItem.m in Sources */,
+				FFBC931F12CCBE8900E1B723 /* IRKeychainManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,7 +223,12 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = IRKeychain_Prefix.pch;
+				GENERATE_MASTER_OBJECT_FILE = YES;
 				INSTALL_PATH = /usr/local/lib;
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
 				PRODUCT_NAME = IRKeychain;
 			};
 			name = Debug;

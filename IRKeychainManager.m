@@ -1,108 +1,29 @@
 //
-//  IRKeychain.m
+//  IRKeychainManager.m
 //  IRKeychain
 //
-//  Created by Evadne Wu on 12/29/10.
+//  Created by Evadne Wu on 12/30/10.
 //  Copyright 2010 Iridia Productions. All rights reserved.
 //
 
-#import "IRKeychain.h"
+#import "IRKeychainManager.h"
 
 
+@implementation IRKeychainManager
 
 
-
-#pragma mark Defines
-
-NSString* NSStringFromIRKeychainItemKind (IRKeychainItemKind kind) {
-
-	switch (kind) {
-
-		case IRKeychainItemKindAny:
-			return @"IRKeychainItemKindAny";
-
-		case IRKeychainItemKindPassword:
-			return @"IRKeychainItemKindPassword";
-
-		case IRKeychainItemKindInternetPassword: 
-			return @"IRKeychainItemKindInternetPassword";
-
-		case IRKeychainItemKindCertificate: 
-			return @"IRKeychainItemKindCertificate";
-
-		case IRKeychainItemKindKey: 
-			return @"IRKeychainItemKindKey";
-
-		case IRKeychainItemKindIdentity: 
-			return @"IRKeychainItemKindIdentity";
-
-		default:
-			assert(NO);
-			
-	}
-	
-}
-
-CFTypeRef SecClassFromIRKeychainItemKind(IRKeychainItemKind kind) {
-
-	switch (kind) {
-			
-		case IRKeychainItemKindAny:
-			return NULL;
-			
-		case IRKeychainItemKindPassword:
-			return kSecClassGenericPassword;
-			
-		case IRKeychainItemKindInternetPassword: 
-			return kSecClassInternetPassword;
-			
-		case IRKeychainItemKindCertificate: 
-			return kSecClassCertificate;
-			
-		case IRKeychainItemKindKey: 
-			return kSecClassKey;
-			
-		case IRKeychainItemKindIdentity: 
-			return kSecClassIdentity;
-			
-		default:
-			assert(NO);
-			
-	}	
-	
-}
-
-
-
-
-
-
-
-
-
-
-#pragma mark -
-#pragma mark Main Class
-
-
-
-
-
-@implementation IRKeychain
-
-
-+ (IRKeychain *) sharedKeychain {
++ (IRKeychainManager *) sharedManager {
 
 	static dispatch_once_t predicate;
-	static IRKeychain *sharedIRKeychain = nil;
+	static IRKeychainManager *sharedIRKeychainManager = nil;
 	
 	dispatch_once(&predicate, ^ {
 		
-		sharedIRKeychain = [[[self class] alloc] init];
+		sharedIRKeychainManager = [[[self class] alloc] init];
 	
 	});
 	
-	return sharedIRKeychain;
+	return sharedIRKeychainManager;
 	
 }
 
@@ -115,7 +36,7 @@ CFTypeRef SecClassFromIRKeychainItemKind(IRKeychainItemKind kind) {
 }
 
 
-- (NSArray *) itemsOfKind:(IRKeychainItemKind)kind matchingPredicate:(NSDictionary *)predicateOrNil inAccessGroup:(NSString *)accessGroupOrNil {
+- (NSArray *) keychainItemsOfKind:(IRKeychainItemKind)kind matchingPredicate:(NSDictionary *)predicateOrNil inAccessGroup:(NSString *)accessGroupOrNil {
 	
 	if (kind == IRKeychainItemKindAny) {
 	
@@ -123,7 +44,7 @@ CFTypeRef SecClassFromIRKeychainItemKind(IRKeychainItemKind kind) {
 		
 		NSArray* (^query)(IRKeychainItemKind) = ^ (IRKeychainItemKind queryKind) {
 		
-			return [self itemsOfKind:queryKind matchingPredicate:predicateOrNil inAccessGroup:accessGroupOrNil];
+			return [self keychainItemsOfKind:queryKind matchingPredicate:predicateOrNil inAccessGroup:accessGroupOrNil];
 		
 		};
 		
@@ -248,3 +169,7 @@ CFTypeRef SecClassFromIRKeychainItemKind(IRKeychainItemKind kind) {
 
 
 @end
+
+
+
+
