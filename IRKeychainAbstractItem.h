@@ -7,7 +7,7 @@
 //
 
 #import "IRKeychainDefines.h"
-//	#import "IRKeychain.h"
+//	
 
 @interface IRKeychainAbstractItem : NSObject
 
@@ -16,7 +16,7 @@
 //	Makes a new object, which is not synced.
 
 
-- (id) initWithCoreFoundationReference:(CFTypeRef)reference;
+- (id) initWithContentsOfSecurityItemDictionary:(NSDictionary *)dictionary;
 
 //	Makes a new object and fills its values using the reference.  Subclasses should override this method and be stricter in acceptance.
 
@@ -42,9 +42,39 @@
 //	return [self removeWithError:nil];
 
 
+- (NSDictionary *) securityItemQueryDictionary;
+
+//	Returns a dictionary which contains useful and comforming information gathered from the item’s properties, to be used by the shared keychain manager.
+//	Subclasses wishing to make modifications shall merge with the superclass’s response.
+
+
+- (NSDictionary *) securityItemAttributesDictionary;
+
+//	Returns a dictionary containing security attributes (e.g. IRKeychainItem properties) of the item, to be used when updating or creating an item.
+//	Subclasses wishing to make modifications shall merge with the superclass’s response.
+
+
+
+
+
 @property (nonatomic, readwrite, assign) IRKeychainItemAccessCondition accessCondition;
 @property (nonatomic, readwrite, assign) NSString *accessGroup;
 
+
+
+
+
 @property (nonatomic, readonly, retain) NSString *identifier;
+
+//	Represents a single identifier field, may be nil in subclasses if not applicable
+
+
+@property (nonatomic, readwrite, retain) NSString *secret;
+
+//	Usually represnts the decoded object (from NSData) to key kSecValueData.
+
+
+
+
 
 @end
