@@ -25,11 +25,10 @@
 @property (nonatomic, readwrite, retain) NSString *userComment;
 
 @property (nonatomic, readwrite, retain) NSString *userLabel;
-@property (nonatomic, readwrite, retain) NSData *userGenericData;
 
 @property (nonatomic, readwrite, retain) NSString *serverSecurityDomain;
 @property (nonatomic, readwrite, retain) NSString *serverAddress;
-@property (nonatomic, readwrite, assign) NSUInteger serverPort;
+@property (nonatomic, readwrite, retain) NSNumber *serverPort;
 @property (nonatomic, readwrite, assign) IRKeychainProtocol serverProtocol;
 @property (nonatomic, readwrite, assign) IRKeychainAuthenticationType serverAuthenticationType;
 @property (nonatomic, readwrite, retain) NSString *serverPath;

@@ -40,9 +40,6 @@
 
 - (NSArray *) keychainItemsOfKind:(IRKeychainItemKind)kind matchingPredicate:(NSDictionary *)predicateOrNil inAccessGroup:(NSString *)accessGroupOrNil {
 
-	NSLog(@"keychainItemsOfKind:%@ matchingPredicate:%@ inAccessGroup:%@", NSStringFromIRKeychainItemKind(kind), predicateOrNil, accessGroupOrNil);
-	
-	
 	if (kind == IRKeychainItemKindAny) {
 	
 		NSMutableArray *results = [NSMutableArray array];
@@ -69,6 +66,7 @@
 		(id)kCFBooleanTrue, (id)kSecReturnData,
 		(id)kCFBooleanTrue, (id)kSecReturnAttributes,
 		(id)kCFBooleanTrue, (id)kSecReturnRef,
+		(id)kCFBooleanTrue, (id)kSecReturnPersistentRef,
 		(id)kSecMatchLimitAll, (id)kSecMatchLimit,
 	
 	nil];
@@ -81,23 +79,32 @@
 	[queryDictionary setObject:[predicateOrNil objectForKey:aKey] forKey:aKey];
 	
 	
-	OSStatus keychainServicesResults = errSecSuccess;
-	keychainServicesResults = SecItemCopyMatching((CFDictionaryRef)queryDictionary, (CFTypeRef *)&resultsArray);
+	OSStatus keychainQueryResults = errSecSuccess;
+	keychainQueryResults = SecItemCopyMatching((CFDictionaryRef)queryDictionary, (CFTypeRef *)&resultsArray);
+		
+	if (keychainQueryResults != errSecSuccess) {
 	
-	NSLog(@"Result is %@", irNSStringFromOSStatus(keychainServicesResults));
-	
-	if (keychainServicesResults != errSecSuccess) {
-	
-		if (keychainServicesResults != errSecItemNotFound)
-		NSLog(@"Error: %@", irNSStringFromOSStatus(keychainServicesResults));
+		if (keychainQueryResults != errSecItemNotFound)
+		NSLog(@"Error: %@", irNSStringFromOSStatus(keychainQueryResults));
 		
 		return [NSArray array];
 	
 	}
+			
+	NSMutableArray *returnedItems = [NSMutableArray array];
 	
-	NSLog(@"Results %@", resultsArray);
+	for (NSDictionary *securityItemRep in resultsArray) {
 	
-	return [resultsArray copy];
+		Class keychainItemClass = IRKeychainItemClassFromKind(IRKeychainItemKindFromSecClass([securityItemRep objectForKey:kSecClass]));
+		
+		if (keychainItemClass == NULL)
+		continue;
+
+		[returnedItems addObject:[[((IRKeychainAbstractItem *)[keychainItemClass alloc]) initWithContentsOfSecurityItemDictionary:securityItemRep] autorelease]];
+		
+	}
+	
+	return returnedItems;
 	
 }
 

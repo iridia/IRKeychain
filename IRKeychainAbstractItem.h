@@ -54,6 +54,11 @@
 //	Subclasses wishing to make modifications shall merge with the superclass’s response.
 
 
+- (NSDictionary *) descriptionDictionary;
+
+//	Returns a dictionary that is used in the custom description method.  Made available so logging is complete.
+
+
 
 
 
@@ -72,6 +77,11 @@
 @property (nonatomic, readwrite, retain) NSString *secret;
 
 //	Usually represnts the decoded object (from NSData) to key kSecValueData.
+
+
+@property (nonatomic, readonly, retain) NSData *persistentReference;
+
+//	Represents a persistent representation that can be used to find the exact item from the keychain.  Made by SecKeychainItemCreatePersistentReference().
 
 
 

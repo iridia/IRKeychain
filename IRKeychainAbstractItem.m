@@ -13,6 +13,7 @@
 @interface IRKeychainAbstractItem ()
 
 @property (nonatomic, readwrite, retain) NSString *identifier;
+@property (nonatomic, readwrite, retain) NSData *persistentReference;
 
 @end
 
@@ -40,11 +41,11 @@
 
 - (id) initWithContentsOfSecurityItemDictionary:(NSDictionary *)dictionary {
 
-	NSLog(@"initWithContentsOfSecurityItemDictionary %@", dictionary);
-
 	self = [self initWithIdentifier:nil]; if (!self) return nil;
 	
-//	Configure item with some more informtion from the passed dictionary
+	self.secret = [[[NSString alloc] initWithData:((NSData *)[dictionary objectForKey:(id)kSecValueData]) encoding:NSUTF8StringEncoding] autorelease];
+	
+	self.persistentReference = (NSData *)[dictionary objectForKey:(id)kSecValuePersistentRef];
 	
 	return self;
 
@@ -55,16 +56,6 @@
 	self.identifier = nil;
 	
 	[super dealloc];
-
-}
-
-
-
-
-
-- (NSString *) description {
-
-	return [[super description] stringByAppendingFormat:@"(identifier = %@)", self.identifier];
 
 }
 
@@ -100,10 +91,6 @@
 
 - (BOOL) synchronizeWithError:(NSError **)error overwrittingOriginal:(BOOL)shouldOverwrite {
 
-	NSLog(@"Synchronizing keychain item %@", self);
-	NSLog(@"[self securityItemQueryDictionary] %@", [self securityItemQueryDictionary]);
-	NSLog(@"[self securityItemAttributesDictionary] %@", [self securityItemAttributesDictionary]);
-	
 	BOOL itemExists = ([[[IRKeychainManager sharedManager] keychainItemsOfKind:IRKeychainItemKindFromClass([self class]) matchingPredicate:[self securityItemQueryDictionary] inAccessGroup:self.accessGroup] count] > 0);
 	
 	OSStatus result;
@@ -119,11 +106,9 @@
 		
 		}
 		
-		NSLog(@"Updating result");
-		
 		NSMutableDictionary *attributesDictionary = [[self securityItemAttributesDictionary] mutableCopy];
 		[attributesDictionary removeObjectForKey:(id)kSecClass];
-	
+			
 		result = SecItemUpdate(
 		
 			(CFDictionaryRef)[self securityItemQueryDictionary],
@@ -133,8 +118,6 @@
 		
 	} else {
 	
-		NSLog(@"Adding result");
-	
 		result = SecItemAdd(
 		
 			(CFDictionaryRef)[self securityItemAttributesDictionary], 
@@ -143,8 +126,6 @@
 		);
 	
 	}
-	
-	NSLog(@"Result %@", irNSStringFromOSStatus(result));
 	
 	if (result == errSecSuccess) return YES;
 	
@@ -172,6 +153,11 @@
 
 - (BOOL) removeWithError:(NSError **)error {
 
+//	If the item was already in the keychain, make it so that it is always referenced just by the existing ref, so as to avoid kludgy searching
+
+//	if (self.persistentReference)
+//	[searchDictionary setObject:self.persistentReference forKey:(id)kSecValuePersistentRef];
+
 	return NO;
 
 }
@@ -179,6 +165,45 @@
 - (BOOL) remove {
 
 	return [self removeWithError:nil];
+
+}
+
+
+
+
+
+- (NSDictionary *) descriptionDictionary {
+
+	return [NSDictionary dictionaryWithObjectsAndKeys:
+	
+		IRKeychainObjectOrNull(self.identifier), @"identifier",
+		IRKeychainObjectOrNull(self.secret), @"secret",
+		IRKeychainObjectOrNull(self.persistentReference), @"persistentReference",
+	
+	nil];
+
+}
+
+- (NSString *) description {
+
+	NSMutableArray *descriptionDictionaryStrings = [NSMutableArray array];
+	NSDictionary *descriptionDictionary = [self descriptionDictionary];
+	
+	for (id aKey in descriptionDictionary)
+	[descriptionDictionaryStrings addObject:[NSString stringWithFormat:
+	
+		@"%@ = %@",
+		aKey,
+		[descriptionDictionary objectForKey:aKey]
+	
+	]];
+
+	return [NSString stringWithFormat:@"%@ { %@ }",
+	
+		[super description],
+		[descriptionDictionaryStrings componentsJoinedByString:@", "]
+		
+	];
 
 }
 
