@@ -9,7 +9,7 @@
 #import "IRKeychainDefines.h"
 //	
 
-@interface IRKeychainAbstractItem : NSObject
+@interface IRKeychainAbstractItem : NSObject <NSCoding>
 
 - (id) initWithIdentifier:(NSString *)identifier;
 

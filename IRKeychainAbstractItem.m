@@ -51,9 +51,38 @@
 
 }
 
+- (id) initWithCoder:(NSCoder *)aDecoder {
+
+	self = [self init]; if (!self) return nil;
+	
+	self.accessCondition = [aDecoder decodeIntForKey:@"accessCondition"];
+	self.accessGroup = [aDecoder decodeObjectForKey:@"accessGroup"];
+	self.identifier = [aDecoder decodeObjectForKey:@"identifier"];
+
+//	Actually, this is to be retrieved manually
+//	self.secret = [aDecoder decodeObjectForKey:@"secret"];
+
+	self.persistentReference = [aDecoder decodeObjectForKey:@"persistentReference"];
+	
+	return self;
+
+}
+
+- (void) encodeWithCoder:(NSCoder *)aCoder {
+
+	[aCoder encodeInt:self.accessCondition forKey:@"accessCondition"];
+	[aCoder encodeObject:self.accessGroup forKey:@"accessGroup"];
+	[aCoder encodeObject:self.identifier forKey:@"identifier"];
+	[aCoder encodeObject:self.persistentReference forKey:@"persistentReference"];
+
+}
+
 - (void) dealloc {
 
+	self.accessGroup = nil;
 	self.identifier = nil;
+	self.secret = nil;
+	self.persistentReference = nil;
 	
 	[super dealloc];
 
