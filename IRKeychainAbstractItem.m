@@ -135,7 +135,7 @@
 		
 		}
 		
-		NSMutableDictionary *attributesDictionary = [[self securityItemAttributesDictionary] mutableCopy];
+		NSMutableDictionary *attributesDictionary = [[[self securityItemAttributesDictionary] mutableCopy] autorelease];
 		[attributesDictionary removeObjectForKey:(id)kSecClass];
 			
 		result = SecItemUpdate(

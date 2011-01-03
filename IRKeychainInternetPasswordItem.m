@@ -49,7 +49,7 @@
 
 - (NSDictionary *) securityItemQueryDictionary {
 
-	NSMutableDictionary *returnedDictionary = [[super securityItemQueryDictionary] mutableCopy];
+	NSMutableDictionary *returnedDictionary = [[[super securityItemQueryDictionary] mutableCopy] autorelease];
 	
 	[returnedDictionary addEntriesFromDictionary:[NSDictionary dictionaryWithObjectsAndKeys:
 	
@@ -66,7 +66,7 @@
 		
 	nil]];
 	
-	for (id aKey in [returnedDictionary copy])
+	for (id aKey in [[returnedDictionary copy] autorelease])
 	if ([[returnedDictionary objectForKey:aKey] isEqual:@""] || [[returnedDictionary objectForKey:aKey] isEqual:[@"" dataUsingEncoding:NSUTF8StringEncoding]])
 	[returnedDictionary removeObjectForKey:aKey];
 	
@@ -76,7 +76,7 @@
 
 - (NSDictionary *) securityItemAttributesDictionary {
 
-	NSMutableDictionary *returnedDictionary = [[super securityItemAttributesDictionary] mutableCopy];
+	NSMutableDictionary *returnedDictionary = [[[super securityItemAttributesDictionary] mutableCopy] autorelease];
 	
 	[returnedDictionary addEntriesFromDictionary:[NSDictionary dictionaryWithObjectsAndKeys:
 	
