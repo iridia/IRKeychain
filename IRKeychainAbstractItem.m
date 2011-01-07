@@ -43,7 +43,7 @@
 
 	self = [self initWithIdentifier:nil]; if (!self) return nil;
 	
-	self.secret = [[[NSString alloc] initWithData:((NSData *)[dictionary objectForKey:(id)kSecValueData]) encoding:NSUTF8StringEncoding] autorelease];
+	self.secret = [dictionary objectForKey:(id)kSecValueData];
 	
 	self.persistentReference = (NSData *)[dictionary objectForKey:(id)kSecValuePersistentRef];
 	
@@ -110,7 +110,7 @@
 	
 	[returnedDictionary setObject:(id)SecClassFromIRKeychainItemKind(IRKeychainItemKindFromClass([self class])) forKey:(id)kSecClass];
 	
-	[returnedDictionary setObject:(id)[self.secret dataUsingEncoding:NSUTF8StringEncoding] forKey:(id)kSecValueData];
+	[returnedDictionary setObject:self.secret forKey:(id)kSecValueData];
 	
 	return returnedDictionary;
 
@@ -122,6 +122,7 @@
 
 - (BOOL) synchronizeWithError:(NSError **)error overwrittingOriginal:(BOOL)shouldOverwrite {
 
+//	Do not use the absense of a persistent data as an excuse
 	BOOL itemExists = ([[[IRKeychainManager sharedManager] keychainItemsOfKind:IRKeychainItemKindFromClass([self class]) matchingPredicate:[self securityItemQueryDictionary] inAccessGroup:self.accessGroup] count] > 0);
 	
 	OSStatus result;
@@ -147,6 +148,10 @@
 			
 		);
 		
+		NSAssert((result == errSecSuccess), @"Error: %@", irNSStringFromOSStatus(result));
+		
+		self.persistentReference = ((IRKeychainAbstractItem *)[[[IRKeychainManager sharedManager] keychainItemsOfKind:IRKeychainItemKindFromClass([self class]) matchingPredicate:[self securityItemQueryDictionary] inAccessGroup:nil] objectAtIndex:0]).persistentReference;
+		
 	} else {
 	
 		NSData *resultData;
@@ -162,13 +167,18 @@
 				return returnedDictionary;
 			
 			})()),
+			
 			(CFTypeRef *)&resultData
 		
 		);
+				
+		if (result == errSecSuccess) {
+
+			NSAssert([resultData isKindOfClass:[NSData class]], @"What returned by SecItemAdd() is not NSData / CFDataRef.  Check query parameters!");
+			self.persistentReference = resultData;
 		
-		if (result == errSecSuccess)
-		self.persistentReference = resultData;
-	
+		}
+		
 	}
 	
 	if (result == errSecSuccess) return YES;
@@ -179,6 +189,10 @@
 		
 		NSLog(@"Error. %@", *error);
 		
+	} else {
+	
+		NSLog(@"Error. %@", irNSStringFromOSStatus(result));
+	
 	}
 	
 	return NO;
@@ -209,6 +223,22 @@
 - (BOOL) remove {
 
 	return [self removeWithError:nil];
+
+}
+
+
+
+
+
+- (NSString *) secretString {
+
+	return [[[NSString alloc] initWithData:self.secret encoding:NSUTF8StringEncoding] autorelease];
+
+}
+
+- (void) setSecretString:(NSString *)inSecretString {
+
+	self.secret = [inSecretString dataUsingEncoding:NSUTF8StringEncoding];
 
 }
 

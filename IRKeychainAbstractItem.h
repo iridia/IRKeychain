@@ -74,9 +74,11 @@
 //	Represents a single identifier field, may be nil in subclasses if not applicable
 
 
-@property (nonatomic, readwrite, retain) NSString *secret;
+@property (nonatomic, readwrite, retain) NSData *secret;
+@property (nonatomic, readwrite, retain) NSString *secretString;
 
-//	Usually represnts the decoded object (from NSData) to key kSecValueData.
+//	Represnts the decoded object (from NSData) to key kSecValueData.
+//	secretString is piggiedback to secret.
 
 
 @property (nonatomic, readonly, retain) NSData *persistentReference;

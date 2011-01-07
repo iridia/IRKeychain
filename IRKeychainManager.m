@@ -128,7 +128,7 @@
 	
 }
 
-- (NSString *) secretFromPersistentReference:(NSData *)inPersistentReference {
+- (id) secretFromPersistentReference:(NSData *)inPersistentReference {
 
 	NSMutableArray *possibleItems = [NSMutableArray array];
 

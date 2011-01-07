@@ -13,7 +13,7 @@
 
 + (IRKeychainManager *) sharedManager;
 
-- (NSString *) secretFromPersistentReference:(NSData *)inPersistentReference;
+- (id) secretFromPersistentReference:(NSData *)inPersistentReference;
 
 //	Useful when you have a persistent reference ref data but do not want things other than the secret
 
