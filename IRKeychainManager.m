@@ -128,6 +128,27 @@
 	
 }
 
+- (NSString *) secretFromPersistentReference:(NSData *)inPersistentReference {
+
+	NSMutableArray *possibleItems = [NSMutableArray array];
+
+	[self forEachItemKind: ^ (IRKeychainItemKind kind) {
+	
+		id returnedItem = [self keychainItemMatchingPersistentReference:inPersistentReference ofKind:kind];
+		
+		if (!returnedItem)
+		return;
+		
+		[possibleItems addObject:returnedItem];
+	
+	}];
+	
+	if ([possibleItems count] == 0) return nil;
+	
+	return ((IRKeychainAbstractItem *)[possibleItems objectAtIndex:0]).secret;
+
+}
+
 - (id) keychainItemMatchingPersistentReference:(NSData *)inPersistentReference ofKind:(IRKeychainItemKind)inKind {
 
 	NSAssert((inKind != IRKeychainItemKindAny), @"-keychainItemMatchingPersistentReference:ofKind: should not be passed IRKeychainItemKindAny.");
