@@ -47,6 +47,61 @@
 
 }
 
+- (id) initWithCoder:(NSCoder *)aDecoder {
+
+	self = [super initWithCoder:aDecoder];
+	if (!self) return nil;
+	
+	self.creationDate = [aDecoder decodeObjectForKey:@"creationDate"];
+	self.lastModificationDate = [aDecoder decodeObjectForKey:@"lastModificationDate"];
+	
+	self.creatorCodeRepresentation = [aDecoder decodeObjectForKey:@"creatorCodeRepresentation"];
+	
+	self.associatedAccountName = [aDecoder decodeObjectForKey:@"associatedAccountName"];
+	
+	self.userDescription = [aDecoder decodeObjectForKey:@"userDescription"];
+	self.userComment = [aDecoder decodeObjectForKey:@"userDescription"];
+	
+	self.userLabel = [aDecoder decodeObjectForKey:@"userLabel"];
+	
+	self.serverSecurityDomain = [aDecoder decodeObjectForKey:@"serverSecurityDomain"];
+	self.serverAddress = [aDecoder decodeObjectForKey:@"serverAddress"];
+	self.serverPort = [aDecoder decodeObjectForKey:@"serverPort"];
+	
+	self.serverProtocol = [aDecoder decodeIntForKey:@"serverProtocol"];
+	self.serverAuthenticationType = [aDecoder decodeIntForKey:@"serverAuthenticationType"];
+	self.serverPath = [aDecoder decodeObjectForKey:@"serverPath"];
+	
+	return self;
+
+}
+
+- (void) encodeWithCoder:(NSCoder *)aCoder {
+
+	[super encodeWithCoder:aCoder];
+	
+	[aCoder encodeObject:self.creationDate forKey:@"creationDate"];
+	[aCoder encodeObject:self.lastModificationDate forKey:@"lastModificationDate"];
+
+	[aCoder encodeObject:self.creatorCodeRepresentation forKey:@"creatorCodeRepresentation"];
+	
+	[aCoder encodeObject:self.associatedAccountName forKey:@"associatedAccountName"];
+	
+	[aCoder encodeObject:self.userDescription forKey:@"userDescription"];
+	[aCoder encodeObject:self.userComment forKey:@"userComment"];
+	
+	[aCoder encodeObject:self.userLabel forKey:@"userLabel"];
+	
+	[aCoder encodeObject:self.serverSecurityDomain forKey:@"serverSecurityDomain"];
+	[aCoder encodeObject:self.serverAddress forKey:@"serverAddress"];
+	[aCoder encodeObject:self.serverPort forKey:@"serverPort"];
+	
+	[aCoder encodeInt:(int)self.serverProtocol forKey:@"serverProtocol"];
+	[aCoder encodeInt:(int)self.serverAuthenticationType forKey:@"serverAuthenticationType"];
+	[aCoder encodeObject:self.serverPath forKey:@"serverPath"];
+
+}
+
 - (NSDictionary *) securityItemQueryDictionary {
 
 	NSMutableDictionary *returnedDictionary = [[[super securityItemQueryDictionary] mutableCopy] autorelease];
