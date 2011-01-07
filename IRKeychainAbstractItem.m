@@ -64,6 +64,8 @@
 
 	self.persistentReference = [aDecoder decodeObjectForKey:@"persistentReference"];
 	
+	self.secret = self.persistentReference ? [[IRKeychainManager sharedManager] secretFromPersistentReference:self.persistentReference] : nil;
+	
 	return self;
 
 }
@@ -147,12 +149,25 @@
 		
 	} else {
 	
+		NSData *resultData;
+				
 		result = SecItemAdd(
 		
-			(CFDictionaryRef)[self securityItemAttributesDictionary], 
-			NULL
+			(CFDictionaryRef)((^ {
+			
+				NSMutableDictionary *returnedDictionary = [[self securityItemAttributesDictionary] mutableCopy];
+				
+				[returnedDictionary setObject:(id)kCFBooleanTrue forKey:(id)kSecReturnPersistentRef];
+				
+				return returnedDictionary;
+			
+			})()),
+			(CFTypeRef *)&resultData
 		
 		);
+		
+		if (result == errSecSuccess)
+		self.persistentReference = resultData;
 	
 	}
 	
