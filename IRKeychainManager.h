@@ -13,6 +13,8 @@
 
 + (IRKeychainManager *) sharedManager;
 
+- (id) keychainItemMatchingPersistentReference:(NSData *)inPersistentReference ofKind:(IRKeychainItemKind)inKind;
+
 - (NSArray *) keychainItemsOfKind:(IRKeychainItemKind)kind matchingPredicate:(NSDictionary *)predicateOrNil inAccessGroup:(NSString *)accessGroupOrNil;
 
 //	Returns an array of items matching a certain predicate that is the same thing you can pass to SecItemCopyMatching().  Item order not guaranteed.

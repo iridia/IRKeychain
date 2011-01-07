@@ -9,6 +9,13 @@
 #import "IRKeychainManager.h"
 
 
+@interface IRKeychainManager ()
+
+- (void) forEachItemKind:(void(^)(IRKeychainItemKind kind))callback;
+
+@end
+
+
 @implementation IRKeychainManager
 
 
@@ -38,23 +45,36 @@
 }
 
 
+
+
+
+- (void) forEachItemKind:(void(^)(IRKeychainItemKind kind))callback {
+
+	callback(IRKeychainItemKindPassword);
+	callback(IRKeychainItemKindInternetPassword);
+	callback(IRKeychainItemKindCertificate);
+	callback(IRKeychainItemKindKey);
+	callback(IRKeychainItemKindIdentity);
+
+}
+
+
+
+
+
 - (NSArray *) keychainItemsOfKind:(IRKeychainItemKind)kind matchingPredicate:(NSDictionary *)predicateOrNil inAccessGroup:(NSString *)accessGroupOrNil {
 
 	if (kind == IRKeychainItemKindAny) {
 	
 		NSMutableArray *results = [NSMutableArray array];
 		
-		NSArray* (^query)(IRKeychainItemKind) = ^ (IRKeychainItemKind queryKind) {
+		[self forEachItemKind: ^ (IRKeychainItemKind queryKind) {
 		
-			return [self keychainItemsOfKind:queryKind matchingPredicate:predicateOrNil inAccessGroup:accessGroupOrNil];
+			NSLog(@"forEachItemKind called for kind %d", queryKind);
 		
-		};
+			[results addObjectsFromArray:[self keychainItemsOfKind:queryKind matchingPredicate:predicateOrNil inAccessGroup:accessGroupOrNil]];
 		
-		[results addObjectsFromArray:query(IRKeychainItemKindPassword)];
-		[results addObjectsFromArray:query(IRKeychainItemKindInternetPassword)];
-		[results addObjectsFromArray:query(IRKeychainItemKindCertificate)];
-		[results addObjectsFromArray:query(IRKeychainItemKindKey)];
-		[results addObjectsFromArray:query(IRKeychainItemKindIdentity)];
+		}];
 		
 		return results;
 	
@@ -106,6 +126,33 @@
 	
 	return returnedItems;
 	
+}
+
+- (id) keychainItemMatchingPersistentReference:(NSData *)inPersistentReference ofKind:(IRKeychainItemKind)inKind {
+
+	NSAssert((inKind != IRKeychainItemKindAny), @"-keychainItemMatchingPersistentReference:ofKind: should not be passed IRKeychainItemKindAny.");
+
+	NSMutableDictionary *resultsDictionary = [NSMutableDictionary dictionary];
+	OSStatus keychainQueryResults = SecItemCopyMatching((CFDictionaryRef)[NSDictionary dictionaryWithObjectsAndKeys:
+	
+		inPersistentReference, (id)kSecValuePersistentRef,
+		(id)kCFBooleanTrue, (id)kSecReturnData,
+		(id)kCFBooleanTrue, (id)kSecReturnAttributes,
+		(id)kCFBooleanTrue, (id)kSecReturnRef,
+		(id)kCFBooleanTrue, (id)kSecReturnPersistentRef,
+		(id)kSecMatchLimitOne, (id)kSecMatchLimit,
+		
+	nil], (CFTypeRef *)&resultsDictionary);
+	
+	if (keychainQueryResults != errSecSuccess) {
+	
+		NSLog(@"Keychain Services: %@", irNSStringFromOSStatus(keychainQueryResults));
+		return nil;
+	
+	}
+	
+	return [[(IRKeychainAbstractItem *)[IRKeychainItemClassFromKind(inKind) alloc] initWithContentsOfSecurityItemDictionary:resultsDictionary] autorelease];
+
 }
 
 @end
