@@ -101,6 +101,8 @@
 	
 	OSStatus keychainQueryResults = errSecSuccess;
 	keychainQueryResults = SecItemCopyMatching((CFDictionaryRef)queryDictionary, (CFTypeRef *)&resultsArray);
+	
+	[resultsArray autorelease];
 		
 	if (keychainQueryResults != errSecSuccess) {
 	
@@ -123,7 +125,7 @@
 		[returnedItems addObject:[[((IRKeychainAbstractItem *)[keychainItemClass alloc]) initWithContentsOfSecurityItemDictionary:securityItemRep] autorelease]];
 		
 	}
-	
+		
 	return returnedItems;
 	
 }

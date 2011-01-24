@@ -102,6 +102,24 @@
 
 }
 
+- (void) dealloc {
+
+	self.creationDate = nil;
+	self.lastModificationDate = nil;
+	self.creatorCodeRepresentation = nil;
+	self.associatedAccountName = nil;
+	self.userDescription = nil;
+	self.userComment = nil;
+	self.userLabel = nil;
+	self.serverSecurityDomain = nil;
+	self.serverAddress = nil;
+	self.serverPort = nil;
+	self.serverPath = nil;
+
+	[super dealloc];
+
+}
+
 - (NSDictionary *) securityItemQueryDictionary {
 
 	NSMutableDictionary *returnedDictionary = [[[super securityItemQueryDictionary] mutableCopy] autorelease];
