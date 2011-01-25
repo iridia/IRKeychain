@@ -158,7 +158,7 @@
 
 	NSAssert((inKind != IRKeychainItemKindAny), @"-keychainItemMatchingPersistentReference:ofKind: should not be passed IRKeychainItemKindAny.");
 
-	NSMutableDictionary *resultsDictionary = [NSMutableDictionary dictionary];
+	NSDictionary *resultsDictionary = nil;
 	OSStatus keychainQueryResults = SecItemCopyMatching((CFDictionaryRef)[NSDictionary dictionaryWithObjectsAndKeys:
 	
 		inPersistentReference, (id)kSecValuePersistentRef,
@@ -169,6 +169,12 @@
 		(id)kSecMatchLimitOne, (id)kSecMatchLimit,
 		
 	nil], (CFTypeRef *)&resultsDictionary);
+	
+	[resultsDictionary retain];	//	Retains
+	CFRelease(resultsDictionary);	//	Combats SecItemCopyMatching
+	
+	[resultsDictionary autorelease];
+
 	
 	if (keychainQueryResults != errSecSuccess) {
 	
