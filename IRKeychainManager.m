@@ -91,7 +91,7 @@
 	
 	nil];
 	
-	NSMutableArray *resultsArray = [NSMutableArray array];	
+	NSArray *resultsArray = nil;	
 	
 	
 	if (predicateOrNil)
@@ -101,6 +101,9 @@
 	
 	OSStatus keychainQueryResults = errSecSuccess;
 	keychainQueryResults = SecItemCopyMatching((CFDictionaryRef)queryDictionary, (CFTypeRef *)&resultsArray);
+	
+	[resultsArray retain];		//	Retains
+	CFRelease(resultsArray);	//	Combats SecItemCopyMatching
 	
 	[resultsArray autorelease];
 		
