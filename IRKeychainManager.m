@@ -102,11 +102,6 @@
 	OSStatus keychainQueryResults = errSecSuccess;
 	keychainQueryResults = SecItemCopyMatching((CFDictionaryRef)queryDictionary, (CFTypeRef *)&resultsArray);
 	
-	[resultsArray retain];		//	Retains
-	CFRelease(resultsArray);	//	Combats SecItemCopyMatching
-	
-	[resultsArray autorelease];
-		
 	if (keychainQueryResults != errSecSuccess) {
 	
 		if (keychainQueryResults != errSecItemNotFound)
@@ -116,6 +111,11 @@
 	
 	}
 			
+	[resultsArray retain];		//	Retains
+	CFRelease(resultsArray);	//	Combats SecItemCopyMatching
+	
+	[resultsArray autorelease];
+		
 	NSMutableArray *returnedItems = [NSMutableArray array];
 	
 	for (NSDictionary *securityItemRep in resultsArray) {
@@ -170,11 +170,6 @@
 		
 	nil], (CFTypeRef *)&resultsDictionary);
 	
-	[resultsDictionary retain];	//	Retains
-	CFRelease(resultsDictionary);	//	Combats SecItemCopyMatching
-	
-	[resultsDictionary autorelease];
-
 	
 	if (keychainQueryResults != errSecSuccess) {
 	
@@ -182,6 +177,11 @@
 		return nil;
 	
 	}
+	
+	[resultsDictionary retain];	//	Retains
+	CFRelease(resultsDictionary);	//	Combats SecItemCopyMatching
+	
+	[resultsDictionary autorelease];
 	
 	return [[(IRKeychainAbstractItem *)[IRKeychainItemClassFromKind(inKind) alloc] initWithContentsOfSecurityItemDictionary:resultsDictionary] autorelease];
 
