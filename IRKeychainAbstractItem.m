@@ -23,6 +23,9 @@
 
 @implementation IRKeychainAbstractItem
 
+@synthesize accessCondition, accessGroup, identifier, secret, secretString;
+@synthesize persistentReference;
+
 - (id) init {
 
 	return [self initWithIdentifier:nil];

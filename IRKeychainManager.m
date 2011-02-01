@@ -18,6 +18,8 @@
 
 @implementation IRKeychainManager
 
+@synthesize defaultAccessGroupName, errorDomain;
+
 
 + (IRKeychainManager *) sharedManager {
 

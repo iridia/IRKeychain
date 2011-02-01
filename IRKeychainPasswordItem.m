@@ -12,4 +12,6 @@
 
 @implementation IRKeychainPasswordItem
 
+@synthesize creationDate, lastModificationDate, creatorCodeRepresentation, invisible, negative, associatedAccountName, associatedServiceName, userDescription, userComment, userLabel, userGenericData;
+
 @end

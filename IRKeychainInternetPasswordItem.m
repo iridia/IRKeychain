@@ -18,6 +18,8 @@
 
 @implementation IRKeychainInternetPasswordItem
 
+@synthesize creationDate, lastModificationDate, creatorCodeRepresentation, associatedAccountName, userDescription, userComment, userLabel, serverSecurityDomain, serverAddress, serverPort, serverProtocol, serverAuthenticationType, serverPath, representedURL;
+
 - (id) initWithContentsOfSecurityItemDictionary:(NSDictionary *)dictionary {
 
 	self = [super initWithContentsOfSecurityItemDictionary:dictionary];
