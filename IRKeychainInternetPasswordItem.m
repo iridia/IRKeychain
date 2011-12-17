@@ -126,24 +126,29 @@
 
 	NSMutableDictionary *returnedDictionary = [[[super securityItemQueryDictionary] mutableCopy] autorelease];
 	
-	[returnedDictionary addEntriesFromDictionary:[NSDictionary dictionaryWithObjectsAndKeys:
+	void (^addIfAppropriate)(id, CFTypeRef) = ^ (id value, CFTypeRef key) {
+		if (value)
+			[returnedDictionary setObject:value forKey:(id)key];
+	};
 	
-		IRKeychainObjectOrEmptyString(self.associatedAccountName), (id)kSecAttrAccount,
-		IRKeychainObjectOrEmptyString(self.userDescription), (id)kSecAttrDescription,
-		IRKeychainObjectOrEmptyString(self.userComment), (id)kSecAttrComment,
-		IRKeychainObjectOrEmptyString(self.userLabel), (id)kSecAttrLabel,
-		IRKeychainObjectOrEmptyString(self.serverSecurityDomain), (id)kSecAttrSecurityDomain,
-		IRKeychainObjectOrEmptyString(self.serverAddress), (id)kSecAttrServer,
-		IRKeychainObjectOrPlaceholder(self.serverPort, [NSNumber numberWithInt:0]), (id)kSecAttrPort,
-		SecProtocolFromIRKeychainProtocol(self.serverProtocol), (id)kSecAttrProtocol,
-		SecAuthenticationTypeFromIRKeychainAuthenticationType(self.serverAuthenticationType), (id)kSecAttrAuthenticationType,
-		IRKeychainObjectOrEmptyString(self.serverPath), (id)kSecAttrPath,
-		
-	nil]];
+	addIfAppropriate(self.associatedAccountName, kSecAttrAccount);
+	addIfAppropriate(self.userDescription, kSecAttrDescription);	
+	addIfAppropriate(self.userComment, kSecAttrComment);
+	addIfAppropriate(self.userLabel, kSecAttrLabel);
+	addIfAppropriate(self.serverSecurityDomain, kSecAttrSecurityDomain);
+	addIfAppropriate(self.serverAddress, kSecAttrServer);
+	addIfAppropriate(self.serverPath, kSecAttrPath);
+	addIfAppropriate(self.serverPort, kSecAttrPort);
 	
-	for (id aKey in [[returnedDictionary copy] autorelease])
-	if ([[returnedDictionary objectForKey:aKey] isEqual:@""] || [[returnedDictionary objectForKey:aKey] isEqual:[@"" dataUsingEncoding:NSUTF8StringEncoding]])
-	[returnedDictionary removeObjectForKey:aKey];
+	if (self.serverProtocol != IRKeychainProtocolUnknown)
+		addIfAppropriate((id)SecProtocolFromIRKeychainProtocol(self.serverProtocol), kSecAttrProtocol);
+	
+	if (self.serverAuthenticationType != IRKeychainAuthenticationTypeUnknown)
+		addIfAppropriate((id)self.serverAuthenticationType, kSecAttrAuthenticationType);
+	
+	//	for (id aKey in [[returnedDictionary copy] autorelease])
+	//	if ([[returnedDictionary objectForKey:aKey] isEqual:@""] || [[returnedDictionary objectForKey:aKey] isEqual:[@"" dataUsingEncoding:NSUTF8StringEncoding]])
+	//	[returnedDictionary removeObjectForKey:aKey];
 	
 	return returnedDictionary;
 
@@ -153,20 +158,27 @@
 
 	NSMutableDictionary *returnedDictionary = [[[super securityItemAttributesDictionary] mutableCopy] autorelease];
 	
-	[returnedDictionary addEntriesFromDictionary:[NSDictionary dictionaryWithObjectsAndKeys:
+	void (^addIfAppropriate)(id, CFTypeRef) = ^ (id value, CFTypeRef key) {
+		if (value)
+			[returnedDictionary setObject:value forKey:(id)key];
+	};
 	
-		IRKeychainObjectOrEmptyString(self.associatedAccountName), (id)kSecAttrAccount,
-		IRKeychainObjectOrEmptyString(self.userDescription), (id)kSecAttrDescription,
-		IRKeychainObjectOrEmptyString(self.userComment), (id)kSecAttrComment,
-		IRKeychainObjectOrEmptyString(self.userLabel), (id)kSecAttrLabel,
-		IRKeychainObjectOrEmptyString(self.serverSecurityDomain), (id)kSecAttrSecurityDomain,
-		IRKeychainObjectOrEmptyString(self.serverAddress), (id)kSecAttrServer,
-		IRKeychainObjectOrPlaceholder(self.serverPort, [NSNumber numberWithInt:0]), (id)kSecAttrPort,
-		SecProtocolFromIRKeychainProtocol(self.serverProtocol), (id)kSecAttrProtocol,
-		SecAuthenticationTypeFromIRKeychainAuthenticationType(self.serverAuthenticationType), (id)kSecAttrAuthenticationType,
-		IRKeychainObjectOrEmptyString(self.serverPath), (id)kSecAttrPath,
-		
-	nil]];
+	addIfAppropriate(self.associatedAccountName, kSecAttrAccount);
+	addIfAppropriate(self.userDescription, kSecAttrDescription);	
+	addIfAppropriate(self.userComment, kSecAttrComment);
+	addIfAppropriate(self.userLabel, kSecAttrLabel);
+	addIfAppropriate(self.serverSecurityDomain, kSecAttrSecurityDomain);
+	addIfAppropriate(self.serverAddress, kSecAttrServer);
+	addIfAppropriate(self.serverPath, kSecAttrPath);
+	addIfAppropriate(self.serverPort, kSecAttrPort);
+	
+	if (self.serverProtocol != IRKeychainProtocolUnknown)
+		addIfAppropriate((id)SecProtocolFromIRKeychainProtocol(self.serverProtocol), kSecAttrProtocol);
+	
+	if (self.serverAuthenticationType != IRKeychainAuthenticationTypeUnknown)
+		addIfAppropriate((id)self.serverAuthenticationType, kSecAttrAuthenticationType);
+	
+	NSLog(@"%s: %@", __PRETTY_FUNCTION__, returnedDictionary);
 	
 	return returnedDictionary;
 

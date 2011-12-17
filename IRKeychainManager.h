@@ -18,7 +18,7 @@
 //	Useful when you have a persistent reference ref data but do not want things other than the secret
 
 
-- (id) keychainItemMatchingPersistentReference:(NSData *)inPersistentReference ofKind:(IRKeychainItemKind)inKind;
+- (id) keychainItemMatchingPersistentReference:(NSData *)inPersistentReference;
 
 - (NSArray *) keychainItemsOfKind:(IRKeychainItemKind)kind matchingPredicate:(NSDictionary *)predicateOrNil inAccessGroup:(NSString *)accessGroupOrNil;
 

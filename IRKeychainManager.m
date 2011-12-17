@@ -85,7 +85,10 @@
 	NSMutableDictionary *queryDictionary = [NSMutableDictionary dictionaryWithObjectsAndKeys:
 
 		(id)SecClassFromIRKeychainItemKind(kind), (id)kSecClass,
+	
+	#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
 		(id)kCFBooleanTrue, (id)kSecReturnData,
+	#endif
 		(id)kCFBooleanTrue, (id)kSecReturnAttributes,
 		(id)kCFBooleanTrue, (id)kSecReturnRef,
 		(id)kCFBooleanTrue, (id)kSecReturnPersistentRef,
@@ -101,18 +104,19 @@
 	[queryDictionary setObject:[predicateOrNil objectForKey:aKey] forKey:aKey];
 	
 	
+	
 	OSStatus keychainQueryResults = errSecSuccess;
 	keychainQueryResults = SecItemCopyMatching((CFDictionaryRef)queryDictionary, (CFTypeRef *)&resultsArray);
 	
 	if (keychainQueryResults != errSecSuccess) {
 	
 		if (keychainQueryResults != errSecItemNotFound)
-		NSLog(@"Error: %@", irNSStringFromOSStatus(keychainQueryResults));
+			NSLog(@"Error: %@", irNSStringFromOSStatus(keychainQueryResults));
 		
 		return [NSArray array];
 	
 	}
-			
+	
 	[resultsArray retain];		//	Retains
 	CFRelease(resultsArray);	//	Combats SecItemCopyMatching
 	
@@ -130,66 +134,93 @@
 		[returnedItems addObject:[[((IRKeychainAbstractItem *)[keychainItemClass alloc]) initWithContentsOfSecurityItemDictionary:securityItemRep] autorelease]];
 		
 	}
-		
+	
 	return returnedItems;
 	
 }
 
 - (id) secretFromPersistentReference:(NSData *)inPersistentReference {
 
-	NSMutableArray *possibleItems = [NSMutableArray array];
-
-	[self forEachItemKind: ^ (IRKeychainItemKind kind) {
+	IRKeychainAbstractItem *item = [self keychainItemMatchingPersistentReference:inPersistentReference];
 	
-		id returnedItem = [self keychainItemMatchingPersistentReference:inPersistentReference ofKind:kind];
-		
-		if (!returnedItem)
-		return;
-		
-		[possibleItems addObject:returnedItem];
-	
-	}];
-	
-	if ([possibleItems count] == 0) return nil;
-	
-	return ((IRKeychainAbstractItem *)[possibleItems objectAtIndex:0]).secret;
+	return item.secret;
 
 }
 
-- (id) keychainItemMatchingPersistentReference:(NSData *)inPersistentReference ofKind:(IRKeychainItemKind)inKind {
-
-	NSAssert((inKind != IRKeychainItemKindAny), @"-keychainItemMatchingPersistentReference:ofKind: should not be passed IRKeychainItemKindAny.");
-
-	NSDictionary *queryDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+- (id) keychainItemMatchingPersistentReference:(NSData *)inPersistentReference {
 	
-		(id)SecClassFromIRKeychainItemKind(inKind), (id)kSecClass,
-		inPersistentReference, (id)kSecValuePersistentRef,
-		(id)kCFBooleanTrue, (id)kSecReturnData,
-		(id)kCFBooleanTrue, (id)kSecReturnAttributes,
-		(id)kCFBooleanTrue, (id)kSecReturnRef,
-		(id)kCFBooleanTrue, (id)kSecReturnPersistentRef,
-		(id)kSecMatchLimitOne, (id)kSecMatchLimit,
+#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
+	
+	__block IRKeychainAbstractItem *abstractItem = nil;
+	
+	[self forEachItemKind:^(IRKeychainItemKind kind) {
+	
+		if (abstractItem)
+			return;
+			
+		CFTypeRef itemClass = SecClassFromIRKeychainItemKind(kind);
 		
-	nil];
+		NSDictionary *persistentRefQuery = [NSDictionary dictionaryWithObjectsAndKeys:
+			(id)itemClass, (id)kSecClass,
+			inPersistentReference, (id)kSecValuePersistentRef,
+			(id)kCFBooleanTrue, (id)kSecReturnData,
+			(id)kCFBooleanTrue, (id)kSecReturnAttributes,
+			(id)kCFBooleanTrue, (id)kSecReturnRef,	//	This is so unintended
+			(id)kCFBooleanTrue, (id)kSecReturnPersistentRef,
+		nil];
+		
+		NSDictionary *queryResult = NULL;
+		
+		OSStatus results = SecItemCopyMatching((CFDictionaryRef)persistentRefQuery, (CFTypeRef *)&queryResult);
+		if (results != errSecSuccess) {
+			NSLog(@"Persistent ref can’t be converted: %@", irNSStringFromOSStatus(results));
+			return;
+		}
+		
+		abstractItem = [[(IRKeychainAbstractItem *)[IRKeychainItemClassFromKind(kind) alloc] initWithContentsOfSecurityItemDictionary:queryResult] autorelease];
+		
+	}];
 	
+	return abstractItem;
 
-	NSDictionary *resultsDictionary = nil;
-	OSStatus keychainQueryResults = SecItemCopyMatching((CFDictionaryRef)queryDictionary, (CFTypeRef *)&resultsDictionary);
+#else
 	
-	
-	if (keychainQueryResults != errSecSuccess) {
-	
-		NSLog(@"Keychain Services: %@", irNSStringFromOSStatus(keychainQueryResults));
+	__block SecKeychainItemRef item = NULL;
+
+	if (errSecSuccess != SecKeychainItemCopyFromPersistentReference((CFDataRef)inPersistentReference, (SecKeychainItemRef *)&item))
 		return nil;
 	
-	}
+	if (!item)
+		return nil;
 	
-	[resultsDictionary retain];	//	Retains
-	CFRelease(resultsDictionary);	//	Combats SecItemCopyMatching
+	NSMutableArray *potentialItems = [NSMutableArray array];
+
+	[self forEachItemKind:^(IRKeychainItemKind kind) {
+		
+		CFTypeRef itemClass = SecClassFromIRKeychainItemKind(kind);
+		NSDictionary *dataQueryDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+			(id)itemClass, (id)kSecClass,
+			(CFArrayRef)[NSArray arrayWithObject:(id)item], (id)kSecMatchItemList,
+			(id)kCFBooleanTrue, (id)kSecReturnAttributes,
+			(id)kCFBooleanTrue, (id)kSecReturnData,
+			(id)kSecMatchLimitOne, (id)kSecMatchLimit,
+		nil];
+		
+		NSDictionary *fetchedData = nil;
+		OSStatus keychainQueryResults = SecItemCopyMatching((CFDictionaryRef)dataQueryDictionary, (CFTypeRef *)&fetchedData);
+		
+		if (keychainQueryResults != errSecSuccess)
+		if (keychainQueryResults != errSecItemNotFound)	//	We do expect search to sometimes fail 
+			NSLog(@"Keychain Services: %@", irNSStringFromOSStatus(keychainQueryResults));
+		
+		if (fetchedData)
+			[potentialItems addObject:[[(IRKeychainAbstractItem *)[IRKeychainItemClassFromKind(kind) alloc] initWithContentsOfSecurityItemDictionary:fetchedData] autorelease]];
+		
+	}];
 	
-	[resultsDictionary autorelease];
-	
-	return [[(IRKeychainAbstractItem *)[IRKeychainItemClassFromKind(inKind) alloc] initWithContentsOfSecurityItemDictionary:resultsDictionary] autorelease];
+	return [potentialItems lastObject];
+
+#endif
 
 }
 

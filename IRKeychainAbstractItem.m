@@ -125,8 +125,12 @@
 
 - (BOOL) synchronizeWithError:(NSError **)error overwrittingOriginal:(BOOL)shouldOverwrite {
 
-//	Do not use the absense of a persistent data as an excuse
-	BOOL itemExists = ([[[IRKeychainManager sharedManager] keychainItemsOfKind:IRKeychainItemKindFromClass([self class]) matchingPredicate:[self securityItemQueryDictionary] inAccessGroup:self.accessGroup] count] > 0);
+	//	Do not use the absense of a persistent data as an excuse
+	
+	BOOL itemExists = (BOOL)!!self.persistentReference;
+	
+	if (!itemExists)
+		itemExists = ([[[IRKeychainManager sharedManager] keychainItemsOfKind:IRKeychainItemKindFromClass([self class]) matchingPredicate:[self securityItemQueryDictionary] inAccessGroup:self.accessGroup] count] > 0);
 	
 	OSStatus result;
 	
@@ -153,7 +157,8 @@
 		
 		NSAssert((result == errSecSuccess), @"Error: %@", irNSStringFromOSStatus(result));
 		
-		self.persistentReference = ((IRKeychainAbstractItem *)[[[IRKeychainManager sharedManager] keychainItemsOfKind:IRKeychainItemKindFromClass([self class]) matchingPredicate:[self securityItemQueryDictionary] inAccessGroup:nil] objectAtIndex:0]).persistentReference;
+		if (!self.persistentReference)
+			self.persistentReference = ((IRKeychainAbstractItem *)[[[IRKeychainManager sharedManager] keychainItemsOfKind:IRKeychainItemKindFromClass([self class]) matchingPredicate:[self securityItemQueryDictionary] inAccessGroup:nil] objectAtIndex:0]).persistentReference;
 		
 	} else {
 	
