@@ -8,6 +8,25 @@
 
 /* Begin PBXBuildFile section */
 		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
+		FF460D4A149CFBFD00DB7F0B /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF460D49149CFBFD00DB7F0B /* Cocoa.framework */; };
+		FF460D54149CFBFD00DB7F0B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FF460D52149CFBFD00DB7F0B /* InfoPlist.strings */; };
+		FF460D58149CFBFD00DB7F0B /* IRKeychainX.m in Sources */ = {isa = PBXBuildFile; fileRef = FF460D57149CFBFD00DB7F0B /* IRKeychainX.m */; };
+		FF460DA0149CFC2900DB7F0B /* IRKeychainAbstractItem.h in Headers */ = {isa = PBXBuildFile; fileRef = FFBC928812CCBC3F00E1B723 /* IRKeychainAbstractItem.h */; };
+		FF460DA1149CFC2900DB7F0B /* IRKeychainAbstractItem.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBC928912CCBC3F00E1B723 /* IRKeychainAbstractItem.m */; };
+		FF460DA2149CFC2900DB7F0B /* IRKeychainPasswordItem.h in Headers */ = {isa = PBXBuildFile; fileRef = FFBC928E12CCBC7000E1B723 /* IRKeychainPasswordItem.h */; };
+		FF460DA3149CFC2900DB7F0B /* IRKeychainPasswordItem.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBC928F12CCBC7000E1B723 /* IRKeychainPasswordItem.m */; };
+		FF460DA4149CFC2900DB7F0B /* IRKeychainInternetPasswordItem.h in Headers */ = {isa = PBXBuildFile; fileRef = FFBC929212CCBC8C00E1B723 /* IRKeychainInternetPasswordItem.h */; };
+		FF460DA5149CFC2900DB7F0B /* IRKeychainInternetPasswordItem.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBC929312CCBC8C00E1B723 /* IRKeychainInternetPasswordItem.m */; };
+		FF460DA6149CFC2900DB7F0B /* IRKeychainCertificateItem.h in Headers */ = {isa = PBXBuildFile; fileRef = FFBC929612CCBC9C00E1B723 /* IRKeychainCertificateItem.h */; };
+		FF460DA7149CFC2900DB7F0B /* IRKeychainCertificateItem.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBC929712CCBC9C00E1B723 /* IRKeychainCertificateItem.m */; };
+		FF460DA8149CFC2900DB7F0B /* IRKeychainKeyItem.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBC929B12CCBCA900E1B723 /* IRKeychainKeyItem.m */; };
+		FF460DA9149CFC2900DB7F0B /* IRKeychainKeyItem.h in Headers */ = {isa = PBXBuildFile; fileRef = FFBC929A12CCBCA900E1B723 /* IRKeychainKeyItem.h */; };
+		FF460DAA149CFC2900DB7F0B /* IRKeychainIdentityItem.h in Headers */ = {isa = PBXBuildFile; fileRef = FFBC92A012CCBCB800E1B723 /* IRKeychainIdentityItem.h */; };
+		FF460DAB149CFC2900DB7F0B /* IRKeychainIdentityItem.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBC92A112CCBCB800E1B723 /* IRKeychainIdentityItem.m */; };
+		FF460DAC149CFC2D00DB7F0B /* IRKeychainManager.h in Headers */ = {isa = PBXBuildFile; fileRef = FFBC931C12CCBE8900E1B723 /* IRKeychainManager.h */; };
+		FF460DAD149CFC2D00DB7F0B /* IRKeychainManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBC931D12CCBE8900E1B723 /* IRKeychainManager.m */; };
+		FF460DAE149CFC3000DB7F0B /* IRKeychain.h in Headers */ = {isa = PBXBuildFile; fileRef = FFBC91AA12CCB9AF00E1B723 /* IRKeychain.h */; };
+		FF460DB3149CFC6B00DB7F0B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF460DB2149CFC6B00DB7F0B /* Security.framework */; };
 		FFBC91AC12CCB9AF00E1B723 /* IRKeychain.h in Headers */ = {isa = PBXBuildFile; fileRef = FFBC91AA12CCB9AF00E1B723 /* IRKeychain.h */; };
 		FFBC91B512CCB9EF00E1B723 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFBC91B412CCB9EF00E1B723 /* CoreFoundation.framework */; };
 		FFBC91B712CCB9EF00E1B723 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFBC91B612CCB9EF00E1B723 /* Security.framework */; };
@@ -32,6 +51,17 @@
 /* Begin PBXFileReference section */
 		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D2AAC07E0554694100DB518D /* libIRKeychain.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIRKeychain.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF460D48149CFBFD00DB7F0B /* IRKeychainX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IRKeychainX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF460D49149CFBFD00DB7F0B /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		FF460D4C149CFBFD00DB7F0B /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		FF460D4D149CFBFD00DB7F0B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		FF460D4E149CFBFD00DB7F0B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		FF460D51149CFBFD00DB7F0B /* IRKeychainX-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "IRKeychainX-Info.plist"; sourceTree = "<group>"; };
+		FF460D53149CFBFD00DB7F0B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		FF460D55149CFBFD00DB7F0B /* IRKeychainX-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IRKeychainX-Prefix.pch"; sourceTree = "<group>"; };
+		FF460D56149CFBFD00DB7F0B /* IRKeychainX.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IRKeychainX.h; sourceTree = "<group>"; };
+		FF460D57149CFBFD00DB7F0B /* IRKeychainX.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IRKeychainX.m; sourceTree = "<group>"; };
+		FF460DB2149CFC6B00DB7F0B /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		FFBC91AA12CCB9AF00E1B723 /* IRKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRKeychain.h; sourceTree = "<group>"; };
 		FFBC91B412CCB9EF00E1B723 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		FFBC91B612CCB9EF00E1B723 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -64,6 +94,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FF460D44149CFBFD00DB7F0B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF460DB3149CFC6B00DB7F0B /* Security.framework in Frameworks */,
+				FF460D4A149CFBFD00DB7F0B /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -71,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				D2AAC07E0554694100DB518D /* libIRKeychain.a */,
+				FF460D48149CFBFD00DB7F0B /* IRKeychainX.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -78,6 +118,7 @@
 		0867D691FE84028FC02AAC07 /* IRKeychain */ = {
 			isa = PBXGroup;
 			children = (
+				FF460DB2149CFC6B00DB7F0B /* Security.framework */,
 				FFBC91AA12CCB9AF00E1B723 /* IRKeychain.h */,
 				FFBC922712CCBA2700E1B723 /* IRKeychain_Prefix.pch */,
 				FFBC92AE12CCBD1B00E1B723 /* IRKeychainDefines.h */,
@@ -85,6 +126,7 @@
 				FFBC931D12CCBE8900E1B723 /* IRKeychainManager.m */,
 				FFBC928D12CCBC5600E1B723 /* Keychain Items */,
 				FFBC91B312CCB9D100E1B723 /* IRWebAPIKit Integration */,
+				FF460D4F149CFBFD00DB7F0B /* IRKeychainX */,
 				0867D69AFE84028FC02AAC07 /* Frameworks */,
 				034768DFFF38A50411DB9C8B /* Products */,
 			);
@@ -97,8 +139,40 @@
 				FFBC91B412CCB9EF00E1B723 /* CoreFoundation.framework */,
 				FFBC91B612CCB9EF00E1B723 /* Security.framework */,
 				AACBBE490F95108600F1A2B1 /* Foundation.framework */,
+				FF460D49149CFBFD00DB7F0B /* Cocoa.framework */,
+				FF460D4B149CFBFD00DB7F0B /* Other Frameworks */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FF460D4B149CFBFD00DB7F0B /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FF460D4C149CFBFD00DB7F0B /* AppKit.framework */,
+				FF460D4D149CFBFD00DB7F0B /* CoreData.framework */,
+				FF460D4E149CFBFD00DB7F0B /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		FF460D4F149CFBFD00DB7F0B /* IRKeychainX */ = {
+			isa = PBXGroup;
+			children = (
+				FF460D56149CFBFD00DB7F0B /* IRKeychainX.h */,
+				FF460D57149CFBFD00DB7F0B /* IRKeychainX.m */,
+				FF460D50149CFBFD00DB7F0B /* Supporting Files */,
+			);
+			path = IRKeychainX;
+			sourceTree = "<group>";
+		};
+		FF460D50149CFBFD00DB7F0B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FF460D51149CFBFD00DB7F0B /* IRKeychainX-Info.plist */,
+				FF460D52149CFBFD00DB7F0B /* InfoPlist.strings */,
+				FF460D55149CFBFD00DB7F0B /* IRKeychainX-Prefix.pch */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		FFBC91B312CCB9D100E1B723 /* IRWebAPIKit Integration */ = {
@@ -147,6 +221,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FF460D45149CFBFD00DB7F0B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF460DA0149CFC2900DB7F0B /* IRKeychainAbstractItem.h in Headers */,
+				FF460DA2149CFC2900DB7F0B /* IRKeychainPasswordItem.h in Headers */,
+				FF460DA4149CFC2900DB7F0B /* IRKeychainInternetPasswordItem.h in Headers */,
+				FF460DA6149CFC2900DB7F0B /* IRKeychainCertificateItem.h in Headers */,
+				FF460DA9149CFC2900DB7F0B /* IRKeychainKeyItem.h in Headers */,
+				FF460DAA149CFC2900DB7F0B /* IRKeychainIdentityItem.h in Headers */,
+				FF460DAC149CFC2D00DB7F0B /* IRKeychainManager.h in Headers */,
+				FF460DAE149CFC3000DB7F0B /* IRKeychain.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -167,6 +256,24 @@
 			productReference = D2AAC07E0554694100DB518D /* libIRKeychain.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		FF460D47149CFBFD00DB7F0B /* IRKeychainX */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FF460D5B149CFBFD00DB7F0B /* Build configuration list for PBXNativeTarget "IRKeychainX" */;
+			buildPhases = (
+				FF460D43149CFBFD00DB7F0B /* Sources */,
+				FF460D44149CFBFD00DB7F0B /* Frameworks */,
+				FF460D45149CFBFD00DB7F0B /* Headers */,
+				FF460D46149CFBFD00DB7F0B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = IRKeychainX;
+			productName = IRKeychainX;
+			productReference = FF460D48149CFBFD00DB7F0B /* IRKeychainX.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -181,6 +288,7 @@
 				Japanese,
 				French,
 				German,
+				en,
 			);
 			mainGroup = 0867D691FE84028FC02AAC07 /* IRKeychain */;
 			productRefGroup = 034768DFFF38A50411DB9C8B /* Products */;
@@ -188,9 +296,21 @@
 			projectRoot = "";
 			targets = (
 				D2AAC07D0554694100DB518D /* IRKeychain */,
+				FF460D47149CFBFD00DB7F0B /* IRKeychainX */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FF460D46149CFBFD00DB7F0B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF460D54149CFBFD00DB7F0B /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D2AAC07B0554694100DB518D /* Sources */ = {
@@ -207,7 +327,33 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FF460D43149CFBFD00DB7F0B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF460D58149CFBFD00DB7F0B /* IRKeychainX.m in Sources */,
+				FF460DA1149CFC2900DB7F0B /* IRKeychainAbstractItem.m in Sources */,
+				FF460DA3149CFC2900DB7F0B /* IRKeychainPasswordItem.m in Sources */,
+				FF460DA5149CFC2900DB7F0B /* IRKeychainInternetPasswordItem.m in Sources */,
+				FF460DA7149CFC2900DB7F0B /* IRKeychainCertificateItem.m in Sources */,
+				FF460DA8149CFC2900DB7F0B /* IRKeychainKeyItem.m in Sources */,
+				FF460DAB149CFC2900DB7F0B /* IRKeychainIdentityItem.m in Sources */,
+				FF460DAD149CFC2D00DB7F0B /* IRKeychainManager.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		FF460D52149CFBFD00DB7F0B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FF460D53149CFBFD00DB7F0B /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		1DEB921F08733DC00010E9CD /* Debug */ = {
@@ -262,6 +408,69 @@
 			};
 			name = Release;
 		};
+		FF460D59149CFBFD00DB7F0B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+				);
+				FRAMEWORK_VERSION = A;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "IRKeychainX/IRKeychainX-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				INFOPLIST_FILE = "IRKeychainX/IRKeychainX-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Debug;
+		};
+		FF460D5A149CFBFD00DB7F0B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+				);
+				FRAMEWORK_VERSION = A;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "IRKeychainX/IRKeychainX-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				INFOPLIST_FILE = "IRKeychainX/IRKeychainX-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -282,6 +491,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		FF460D5B149CFBFD00DB7F0B /* Build configuration list for PBXNativeTarget "IRKeychainX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FF460D59149CFBFD00DB7F0B /* Debug */,
+				FF460D5A149CFBFD00DB7F0B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
