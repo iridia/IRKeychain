@@ -155,12 +155,22 @@
 			
 		);
 		
-		NSAssert((result == errSecSuccess), @"Error: %@", irNSStringFromOSStatus(result));
+		if (result == errSecSuccess) {
+			
+			NSLog(@"Error: %@", irNSStringFromOSStatus(result));
+			itemExists = NO;	//	Abandon it.
+			self.persistentReference = nil;	//	?
 		
-		if (!self.persistentReference)
-			self.persistentReference = ((IRKeychainAbstractItem *)[[[IRKeychainManager sharedManager] keychainItemsOfKind:IRKeychainItemKindFromClass([self class]) matchingPredicate:[self securityItemQueryDictionary] inAccessGroup:nil] objectAtIndex:0]).persistentReference;
+		} else {
+			
+			if (!self.persistentReference)
+				self.persistentReference = ((IRKeychainAbstractItem *)[[[IRKeychainManager sharedManager] keychainItemsOfKind:IRKeychainItemKindFromClass([self class]) matchingPredicate:[self securityItemQueryDictionary] inAccessGroup:nil] objectAtIndex:0]).persistentReference;
+			
+		}
 		
-	} else {
+	}
+	
+	if (!itemExists) {
 	
 		NSData *resultData;
 				
