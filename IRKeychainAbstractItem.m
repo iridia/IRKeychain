@@ -155,7 +155,7 @@
 			
 		);
 		
-		if (result == errSecSuccess) {
+		if (result != errSecSuccess) {
 			
 			NSLog(@"Error: %@", irNSStringFromOSStatus(result));
 			itemExists = NO;	//	Abandon it.
@@ -199,13 +199,14 @@
 		
 	}
 	
-	if (result == errSecSuccess) return YES;
+	if (result == errSecSuccess)
+		return YES;
 	
 	if (error != nil) {
 
 		*error = [NSError errorWithDomain:[IRKeychainManager sharedManager].errorDomain code:(int)result userInfo:[NSDictionary dictionaryWithObject:irNSStringFromOSStatus(result) forKey:@"explanation"]];
 		
-		NSLog(@"Error. %@", *error);
+		NSLog(@"Error. %@", error);
 		
 	} else {
 	
