@@ -213,7 +213,7 @@ static inline NSString* irNSStringFromOSStatus(OSStatus status) {
 	switch (status) {
 
 		case errSecSuccess:			
-			return @"Succes";
+			return @"Success";
 		
 		case errSecUnimplemented:
 			return @"Unimplemented";
