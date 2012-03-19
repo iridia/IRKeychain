@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
+		FF18425015172423006F6BFA /* IRKeychainDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = FF18424F15172423006F6BFA /* IRKeychainDefines.m */; };
 		FF460D4A149CFBFD00DB7F0B /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF460D49149CFBFD00DB7F0B /* Cocoa.framework */; };
 		FF460D54149CFBFD00DB7F0B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FF460D52149CFBFD00DB7F0B /* InfoPlist.strings */; };
 		FF460D58149CFBFD00DB7F0B /* IRKeychainX.m in Sources */ = {isa = PBXBuildFile; fileRef = FF460D57149CFBFD00DB7F0B /* IRKeychainX.m */; };
@@ -51,6 +52,7 @@
 /* Begin PBXFileReference section */
 		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D2AAC07E0554694100DB518D /* libIRKeychain.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIRKeychain.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF18424F15172423006F6BFA /* IRKeychainDefines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRKeychainDefines.m; sourceTree = "<group>"; };
 		FF460D48149CFBFD00DB7F0B /* IRKeychainX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IRKeychainX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF460D49149CFBFD00DB7F0B /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		FF460D4C149CFBFD00DB7F0B /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -122,6 +124,7 @@
 				FFBC91AA12CCB9AF00E1B723 /* IRKeychain.h */,
 				FFBC922712CCBA2700E1B723 /* IRKeychain_Prefix.pch */,
 				FFBC92AE12CCBD1B00E1B723 /* IRKeychainDefines.h */,
+				FF18424F15172423006F6BFA /* IRKeychainDefines.m */,
 				FFBC931C12CCBE8900E1B723 /* IRKeychainManager.h */,
 				FFBC931D12CCBE8900E1B723 /* IRKeychainManager.m */,
 				FFBC928D12CCBC5600E1B723 /* Keychain Items */,
@@ -324,6 +327,7 @@
 				FFBC929D12CCBCA900E1B723 /* IRKeychainKeyItem.m in Sources */,
 				FFBC92A312CCBCB800E1B723 /* IRKeychainIdentityItem.m in Sources */,
 				FFBC931F12CCBE8900E1B723 /* IRKeychainManager.m in Sources */,
+				FF18425015172423006F6BFA /* IRKeychainDefines.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
