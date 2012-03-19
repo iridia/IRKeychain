@@ -206,7 +206,7 @@
 
 		*error = [NSError errorWithDomain:[IRKeychainManager sharedManager].errorDomain code:(int)result userInfo:[NSDictionary dictionaryWithObject:irNSStringFromOSStatus(result) forKey:@"explanation"]];
 		
-		NSLog(@"Error. %@", error);
+		NSLog(@"Error. %@", *error);
 		
 	} else {
 	
