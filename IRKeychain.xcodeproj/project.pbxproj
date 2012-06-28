@@ -47,6 +47,7 @@
 		FFBC92AF12CCBD1B00E1B723 /* IRKeychainDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = FFBC92AE12CCBD1B00E1B723 /* IRKeychainDefines.h */; };
 		FFBC931E12CCBE8900E1B723 /* IRKeychainManager.h in Headers */ = {isa = PBXBuildFile; fileRef = FFBC931C12CCBE8900E1B723 /* IRKeychainManager.h */; };
 		FFBC931F12CCBE8900E1B723 /* IRKeychainManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBC931D12CCBE8900E1B723 /* IRKeychainManager.m */; };
+		FFDE51EA159AEF380086F9B0 /* IRKeychainDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = FF18424F15172423006F6BFA /* IRKeychainDefines.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -120,7 +121,6 @@
 		0867D691FE84028FC02AAC07 /* IRKeychain */ = {
 			isa = PBXGroup;
 			children = (
-				FF460DB2149CFC6B00DB7F0B /* Security.framework */,
 				FFBC91AA12CCB9AF00E1B723 /* IRKeychain.h */,
 				FFBC922712CCBA2700E1B723 /* IRKeychain_Prefix.pch */,
 				FFBC92AE12CCBD1B00E1B723 /* IRKeychainDefines.h */,
@@ -141,6 +141,7 @@
 			children = (
 				FFBC91B412CCB9EF00E1B723 /* CoreFoundation.framework */,
 				FFBC91B612CCB9EF00E1B723 /* Security.framework */,
+				FF460DB2149CFC6B00DB7F0B /* Security.framework */,
 				AACBBE490F95108600F1A2B1 /* Foundation.framework */,
 				FF460D49149CFBFD00DB7F0B /* Cocoa.framework */,
 				FF460D4B149CFBFD00DB7F0B /* Other Frameworks */,
@@ -343,6 +344,7 @@
 				FF460DA8149CFC2900DB7F0B /* IRKeychainKeyItem.m in Sources */,
 				FF460DAB149CFC2900DB7F0B /* IRKeychainIdentityItem.m in Sources */,
 				FF460DAD149CFC2D00DB7F0B /* IRKeychainManager.m in Sources */,
+				FFDE51EA159AEF380086F9B0 /* IRKeychainDefines.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
